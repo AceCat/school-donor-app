@@ -26,9 +26,9 @@ router.post('/', function(request, response){
         image: request.body.image,
         description: request.body.description,
         owner: request.body.owner
-        item.save();
-        response.json(item);
     });
+    item.save();
+    response.json(item);
 });
 
 router.patch('/:id', function(request, response){
