@@ -2,7 +2,41 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var User = require('../models/User');
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/', 
+router.post('/', function(request, response){
+    var item = new Item({
+        name: request.body.name,
+        open: request.body.open,
+        image: request.body.image,
+        description: request.body.description,
+        owner: request.body.owner
+    });
+    item.save();
+    response.json(item);
+});
+
+router.patch('/:id', function(request, response){
+    //grab item key
+    var id = request.params.id;
+    Item.findById(id, function(error, item){
+        item.name = request.body.name
+        item.open = request.body.open
+        item.image = request.body.image
+        item.description = request.body.description
+        item.owner = request.body.owner
+        item.save();
+        response.json(item);
+    });
+});
+
+router.delete('/:id', function(request, response){
+    //grab item key
+    var id = request.params.id;
+    Item.findById(id, function(error, item){
+        item.remove();
+        response.json(item);
+    });
+});
