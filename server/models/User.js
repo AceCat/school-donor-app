@@ -9,8 +9,8 @@ var UserSchema = new mongoose.Schema({
   address: String,
   image: String,
   description: String,
-	openItems: [{mongoose.Schema.Types.ObjectId, ref: 'Item'}],
-	closedItems: [{mongoose.Schema.Types.ObjectId, ref: 'Item'}]
+	openItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
+	closedItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}]
 })
 
 var userModel = mongoose.model('User', UserSchema);
