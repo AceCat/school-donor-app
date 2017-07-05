@@ -5,6 +5,19 @@
 <p>{{description}}</p>
 
 <h2>Here are your  <!-- depends on if open or closed--></h2>
+
+<form class="itemForm" action="/item" method="post">
+    <p>
+        New Item Here:
+    </p>
+    <input placeholder="name" id="itemNameForm">
+    <input placeholder="open" hidden id="itemNameForm" value="True">
+    <input placeholder="image" id="itemImageForm">
+    <input placeholder="Please provide a description of the item" id='itemDescriptionForm'>
+    <input placeholder="owner" hidden id='itemDescriptionForm' value={{id}}>
+    <button id='createItem'>Submit</button>
+</form>
+
 {{#each openItems}}
 <div class="item">
     <h3>{{this.name}}</h3>
