@@ -26,7 +26,7 @@ router.get('/login', function(request, response){
 
 router.get('/:id', function(request, response){
   var userId = request.params.id;
-  User.findById(userId, function (err, user){
+  User.findById(userId).populate('openItems').exec(function (err, user){
     response.render('profile', user);
 
   })

@@ -3,6 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('../models/User');
+var Item = require('../models/Item')
 
 router.use(bodyParser.urlencoded({extended: true}));
 
@@ -28,7 +29,12 @@ router.post('/', function(request, response){
         owner: request.body.owner
     });
     item.save();
-    response.json(item);
+    var itemId = item.id;
+    User.findById(item.owner, function(err, user) {
+        user.openItems.push(item.id);
+        user.save();
+    })
+  response.redirect(request.get('referer'));
 });
 
 router.patch('/:id', function(request, response){
