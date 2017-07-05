@@ -55,8 +55,8 @@ router.post('/', function (request, response) {
   	userId = user.id;
   	// request.session.loggedIn = true;
   	// request.session.sessionId = userId;
-  	response.send(user)
-	})
+    response.send(userId);
+  	})
 })
 
 //This is the login post route
@@ -68,7 +68,7 @@ router.post('/login', function(request, response){
           request.session.loggedIn = true;
           request.session.sessionId = user.id;
           request.session.userName = user.name;
-          response.send("This worked")
+          response.redirect("/users/" + user.id);
         } else {
           response.send("That's the wrong password you scallywag")
         }

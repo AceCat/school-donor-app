@@ -24,7 +24,8 @@ createButton.click(function (){
 		url: "http://localhost:3000/users",
 		data: newUser,
 		success: function(response){
-			console.log("Success")
+			var dataId = response;
+			window.location.href = ("http://localhost:3000/users/" + dataId);
 		}
 	})
 })
