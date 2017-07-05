@@ -1,4 +1,4 @@
-<h1>Welcome {{user.name}}</h1>
+<h1>Welcome, {{user.name}}</h1>
 
 <p>{{user.name}}</p>
 <img src="{{user.image}}"/>
@@ -30,7 +30,7 @@
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
     <p>The owner of this item is {{this.ownerName}}</p>
-    {{#if loggedIn}}
+    {{#if user.loggedIn}}
     <button id="buttonClosed" name="openIt">Open item</button>
     {{/if}}
 </div>
@@ -42,7 +42,7 @@
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
     <p>The owner of this item is {{this.ownerName}}</p>
-    {{#if loggedIn}}
+    {{#if user.loggedIn}}
     <button id="buttonOpen" name="openIt">Open item</button>
     {{/if}}
 </div>
