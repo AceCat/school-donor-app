@@ -4,11 +4,11 @@
 <img src="{{image}}"/>
 <p>{{description}}</p>
 
-<h2>Here are your  <!-- depends on if open or closed--></h2>
+<h2>Items</h2>
 
 <form class="itemForm" action="/item" method="post">
     <p>
-        New Item Here:
+        Place you new items here:
     </p>
     <input name="name" placeholder="name" id="itemNameForm">
     <input name="open" placeholder="open" hidden id="itemNameForm" value="True">
@@ -19,11 +19,26 @@
     <button id='createItem'>Submit</button>
 </form>
 
+<br>
+
+<button id="openButton" name="openList">Open Items</button>
+<button id="closedButton" name="closedList">Closed Items</button>
+
+<div class="openItem">
 {{#each openItems}}
-<div class="item">
     <h3>{{this.name}}</h3>
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
     <p>The owner of this item is {{this.ownerName}}</p>
 </div>
+
+<div class="closedItem">
+{{#each closedItems}}
+    <h3>{{this.name}}</h3>
+    <img src="{{this.image}}" />
+    <p>{{this.description}}</p>
+    <p>The owner of this item is {{this.owner}}</p>
 {{/each}}
+</div>
+
+<button>Close This Item</button> <!-- only available if user looking at own page -->
