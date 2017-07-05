@@ -8,6 +8,13 @@ var UsersController = require('./controllers/UserController.js')
 var ItemController = require('./controllers/ItemController')
 
 
+app.use(session({
+	secret: "I'm very secretive",
+	resave: false,
+	saveUnitialized: true,
+	cookie: {secure: false}
+}));
+
 	require('./db/db.js')
 
 	app.use('/users', UsersController);

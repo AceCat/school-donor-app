@@ -20,6 +20,13 @@ router.get('/register', function(request, response){
   response.render('register')
 })
 
+router.get('/login', function(request, response){
+  response.render('login')
+})
+
+///////////////////////////////////////////
+//POST REQUESTS
+///////////////////////////////////////////
 //A post request to /users
 
 router.post('/', function (request, response) {
@@ -42,6 +49,26 @@ router.post('/', function (request, response) {
   	// request.session.sessionId = userId;
   	response.send(user)
 	})
+})
+
+//This is the login post route
+router.post('/login', function(request, response){
+  User.findOne({email: request.body.email}, function(error, user){
+    if(user){
+      bcrypt.compare(request.body.password, user.password, function(error, match){
+        if (match === true) {
+          request.session.loggedIn = true;
+          request.session.sessionId = user.id;
+          request.session.userName = user.name;
+          response.send("This worked")
+        } else {
+          response.send("That's the wrong password you scallywag")
+        }
+      })
+    } else {
+      response.send("Email not found.")
+    }
+  })
 })
 
 router.patch('/:id', function(request, response){

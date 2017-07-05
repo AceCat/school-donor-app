@@ -1,4 +1,6 @@
 var createButton = $('#createUser');
+var loginButton = $('#loginSubmit');
+
 
 createButton.click(function (){
 	var email = $("#emailForm").val();
@@ -26,3 +28,21 @@ createButton.click(function (){
 		}
 	})
 })
+
+// loginButton.click(function(){
+// 	console.log('clicked')
+// 	var email = $("#loginEmail").val();
+// 	var password = $('#loginPassword').val();
+// 	var userInfo = {
+// 		email: email,
+// 		password: password
+// 	}
+// 	$.ajax({
+// 		method: "POST",
+// 		data: userInfo,
+// 		url: "http://localhost:3000/users/login",
+// 		success: function(response){
+// 			console.log(response);
+// 		}
+// 	})
+// })
