@@ -16,6 +16,10 @@ User.find(function(error, users) {
   })
 });
 
+router.get('/register', function(request, response){
+  response.render('register')
+})
+
 //A post request to /users
 
 router.post('/', function (request, response) {
@@ -25,7 +29,7 @@ router.post('/', function (request, response) {
   		userType: request.body.type,
   		password: hash,
   		schoolType: request.body.schoolType,
-  		contact: request.body.contact,
+  		email: request.body.email,
   		address: request.body.address,
   		image: request.body.image,
   		description: request.body.description

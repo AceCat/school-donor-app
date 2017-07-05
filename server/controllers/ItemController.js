@@ -53,3 +53,5 @@ router.delete('/:id', function(request, response){
         response.json(item);
     });
 });
+
+module.exports = router;
