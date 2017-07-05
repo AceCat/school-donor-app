@@ -47,7 +47,11 @@ createButton.click(function (){
 // 	})
 // })
 
-
-var openItem =
-
-var closedItem =
+$('openButton').click(function(){
+	$('.openItem').show()
+	$('.closedItem').hide()
+});
+$('closedButton').click(function(){
+	$('.closedItem').show();
+	$('.openItem').hide();
+});
