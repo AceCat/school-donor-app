@@ -26,15 +26,17 @@ router.post('/', function(request, response){
         open: request.body.open,
         image: request.body.image,
         description: request.body.description,
-        owner: request.body.owner
+        owner: request.body.owner,
+        ownerName: request.body.ownerName
     });
     item.save();
     var itemId = item.id;
     User.findById(item.owner, function(err, user) {
         user.openItems.push(item.id);
         user.save();
+        response.redirect(request.get('referer'));
+
     })
-  response.redirect(request.get('referer'));
 });
 
 router.patch('/:id', function(request, response){
