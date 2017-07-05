@@ -5,7 +5,7 @@ var ItemSchema = new mongoose.Schema({
 	open: Boolean,
 	image: String,
 	description: String,
-	owner: {mongoose.Schema.Types.ObjectId, ref: 'User'}
+	owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 var itemModel = mongoose.model('Item', ItemSchema);

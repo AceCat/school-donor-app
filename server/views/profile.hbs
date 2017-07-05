@@ -1,0 +1,15 @@
+<h1>Welcome {{name}}</h1>
+
+<p>{{name}}</p>
+<p>{{image}}</p>
+<p>{{description}}</p>
+
+<h2>Here are your  <!-- depends on if open or closed--></h2>
+{{#each openItems}}
+<div class="item">
+    <h3>{{this.name}}</h3>
+    <img src="{{this.image}}" />
+    <p>{{this.description}}</p>
+    <p>The owner of this item is {{this.owner}}</p>
+</div>
+{{/each}}

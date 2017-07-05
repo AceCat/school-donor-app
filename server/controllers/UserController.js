@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../models/User');
 var bodyParser = require('body-parser');
 var path = require('path');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 
 router.use(bodyParser.urlencoded({extended: true}));
@@ -70,6 +70,3 @@ router.delete('/:id', function(request, response){
 })
 
 module.exports = router;
-
-
-
