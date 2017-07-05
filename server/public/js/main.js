@@ -47,11 +47,16 @@ createButton.click(function (){
 // 	})
 // })
 
-$('openButton').click(function(){
+var openButton = $('#openButton')
+var closedButton = $('#closedButton')
+
+openButton.click(function(){
+	console.log("1")
 	$('.openItem').show()
 	$('.closedItem').hide()
 });
-$('closedButton').click(function(){
+closedButton.click(function(){
+	console.log("2")
 	$('.closedItem').show();
 	$('.openItem').hide();
 });

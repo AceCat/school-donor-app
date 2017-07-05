@@ -18,21 +18,27 @@
     <button id='createItem'>Submit</button>
 </form>
 
+<br>
 
-{{#each openItems}}
+<button id="openButton" name="openList">Open Items</button>
+<button id="closedButton" name="closedList">Closed Items</button>
+
 <div class="openItem">
+{{#each openItems}}
     <h3>{{this.name}}</h3>
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
     <p>The owner of this item is {{this.owner}}</p>
-</div>
 {{/each}}
+</div>
 
-{{#each closedItems}}
 <div class="closedItem">
+{{#each closedItems}}
     <h3>{{this.name}}</h3>
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
     <p>The owner of this item is {{this.owner}}</p>
-</div>
 {{/each}}
+</div>
+
+<button>Close This Item</button> <!-- only available if user looking at own page -->
