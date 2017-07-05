@@ -24,6 +24,14 @@ router.get('/login', function(request, response){
   response.render('login')
 })
 
+router.get('/:id', function(request, response){
+  var userId = request.params.id;
+  User.findById(userId, function (err, user){
+    response.render('profile', user);
+
+  })
+})
+
 ///////////////////////////////////////////
 //POST REQUESTS
 ///////////////////////////////////////////
