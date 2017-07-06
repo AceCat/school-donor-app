@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var bcrypt = require('bcryptjs');
 
-
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/', function (request, response) {
