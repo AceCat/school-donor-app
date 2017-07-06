@@ -33,32 +33,28 @@
 <button id="closedButton" name="closedList">Closed Items</button>
 
 {{#each user.openItems}}
-<div class="openItem">
-    <h3>{{this.name}}</h3>
-    <img src="{{this.image}}" />
-    <p>{{this.description}}</p>
-    <p>The owner of this item is {{this.ownerName}}</p>
+	<div class="openItem">
+    	<h3>{{this.name}}</h3>
+    	<img src="{{this.image}}" />
+    	<p>{{this.description}}</p>
+    	<p>The owner of this item is {{this.ownerName}}</p>
     {{#if user.loggedIn}}
-    <button id="buttonClosed" name="openIt">Open item</button>
+    	<button id="buttonClosed" name="openIt">Open item</button>
     {{/if}}
-</div>
+	</div>
 {{/each}}
 
 {{#each user.closedItems}}
-<div class="closedItem">
-=======
-{{#if openItems}}
-{{#each openItems}}
-<div class="item">
->>>>>>> search
-    <h3>{{this.name}}</h3>
-    <img src="{{this.image}}" />
-    <p>{{this.description}}</p>
-    <p>The owner of this item is {{this.ownerName}}</p>
+	<div class="closedItem">
+	{{#each openItems}}
+	<div class="item">
+    	<h3>{{this.name}}</h3>
+    	<img src="{{this.image}}" />
+    	<p>{{this.description}}</p>
+    	<p>The owner of this item is {{this.ownerName}}</p>
     {{#if user.loggedIn}}
-    <button id="buttonOpen" name="openIt">Open item</button>
+    	<button id="buttonOpen" name="openIt">Open item</button>
     {{/if}}
-</div>
+	</div>
+	{{/each}}
 {{/each}}
-{{/if}}
-<button id="changeItems">View closed items</button>
