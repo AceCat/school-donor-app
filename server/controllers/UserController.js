@@ -84,13 +84,13 @@ router.post('/', function (request, response) {
 
 
 router.post('/move-open', function (request, response){
-  Item.findById(request.body.id, function(request, item) {
+  Item.findById(request.body.itemId, function(request, item) {
     item.open = false;
     item.save();
   })
   User.findById(request.session.sessionId, function(err, user){
-    user.openItems.pop(request.body.id);
-    user.closedItems.addToSet(request.body.id);
+    user.openItems.pop(request.body.itemId);
+    user.closedItems.addToSet(request.body.itemId);
     user.save();
   })
   response.redirect('/users/' + request.session.sessionId)
@@ -98,13 +98,13 @@ router.post('/move-open', function (request, response){
 });
 
 router.post('/move-closed', function (request, response){
-  Item.findById(request.body.id, function(request, item) {
+  Item.findById(request.body.itemId, function(request, item) {
     item.open = true;
     item.save();
   })
   User.findById(request.session.sessionId, function(err, user){
-    user.closedItems.pop(request.body.id);
-    user.openItems.addToSet(request.body.id);
+    user.closedItems.pop(request.body.itemId);
+    user.openItems.addToSet(request.body.itemId);
     user.save();
   })
   response.redirect('/users/' + request.session.sessionId)
