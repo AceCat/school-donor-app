@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var Item = require('../models/Item');
 var bodyParser = require('body-parser');
 var path = require('path');
 var bcrypt = require('bcryptjs');
@@ -60,9 +61,14 @@ router.post('/', function (request, response) {
 })
 
 
-router.post('/move', function (request, response){
-  Item.findById
-})
+router.post('/moveOpen', function (request, response){
+  User.findById(request.session.sessionId, function(err, user){
+    user.openItems.pop(request.body.id);
+    user.closedItems.addToSet(request.body.id);
+    user.save();
+  })
+  response.send("success")
+});
 
 
 //This is the login post route
