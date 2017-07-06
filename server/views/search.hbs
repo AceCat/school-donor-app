@@ -1,4 +1,9 @@
-{{#each items}}
-<h1>{{this.name}}</h1>
-<h1>{{this.description}}</h1>
-{{/each}}
+
+<ol>
+	{{#each items}}
+	<li>
+		<h3><a href="/users/{{this.owner}}">{{this.name}}</a></h3>
+		<p>{{this.description}}</p>
+	</li>
+	{{/each}}
+</ol>

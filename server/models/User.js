@@ -11,7 +11,11 @@ var UserSchema = new mongoose.Schema({
   description: String,
 	openItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
 	closedItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}]
-})
+});
+
+UserSchema.index({name: 'text', openItems: 'text'})
+// UserSchema.index({'$**': 'text'});
+
 
 var userModel = mongoose.model('User', UserSchema);
 
