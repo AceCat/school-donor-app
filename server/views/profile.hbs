@@ -1,3 +1,8 @@
+<form action='/item/search' method="POST">
+	<input name="searchTerm" id="searchBox" placeholder="Search our database">
+	<button id='submitSearch'>Search</button>
+</form>
+
 <h1>Welcome {{name}}</h1>
 
 <p>{{name}}</p>
@@ -19,6 +24,7 @@
     <button id='createItem'>Submit</button>
 </form>
 
+{{#if openItems}}
 {{#each openItems}}
 <div class="item">
     <h3>{{this.name}}</h3>
@@ -27,3 +33,5 @@
     <p>The owner of this item is {{this.ownerName}}</p>
 </div>
 {{/each}}
+{{/if}}
+<button id="changeItems">View closed items</button>

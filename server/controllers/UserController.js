@@ -59,6 +59,7 @@ router.post('/', function (request, response) {
   	})
 })
 
+
 //This is the login post route
 router.post('/login', function(request, response){
   User.findOne({email: request.body.email}, function(error, user){
@@ -77,7 +78,10 @@ router.post('/login', function(request, response){
       response.send("Email not found.")
     }
   })
-})
+});
+
+
+
 
 router.patch('/:id', function(request, response){
   var id = request.params.id;
