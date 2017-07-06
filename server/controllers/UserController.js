@@ -61,7 +61,7 @@ router.post('/', function (request, response) {
 })
 
 
-router.post('/moveOpen', function (request, response){
+router.post('/move-open', function (request, response){
   User.findById(request.session.sessionId, function(err, user){
     user.openItems.pop(request.body.id);
     user.closedItems.addToSet(request.body.id);
@@ -69,6 +69,17 @@ router.post('/moveOpen', function (request, response){
   })
   response.send("success")
 });
+
+router.post('/move-closed', function (request, response){
+  User.findById(request.session.sessionId, function(err, user){
+    user.closedItems.pop(request.body.id);
+    user.openItems.addToSet(request.body.id);
+    user.save();
+  })
+  response.send("success")
+});
+
+
 
 
 //This is the login post route

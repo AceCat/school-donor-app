@@ -41,7 +41,7 @@
     	<p id="itemId" hidden>{{this.id}}</p>
     	{{#if ../loggedIn}}
     <!-- move this item from openItems to closedItems -->
-    	<form action="users/move" method="POST">
+    	<form action="./move-open" method="POST">
         	<input name="id" value="{{this.id}}" id="itemId"></p>
         	<button id="buttonClosed" name="openIt">Mark item closed</button>
     	</form>
@@ -57,8 +57,8 @@
     <p>The owner of this item is {{this.ownerName}}</p>
     {{#if ../loggedIn}}
     <!-- move this item from closedItems to openItems -->
-    <form action="users/move" method="POST">
-        <input name="id" value="{{this.id}}" id="itemId">{{this.id}}</p>
+    <form action="./move-closed" method="POST">
+        <input name="id" value="{{this.id}}" id="itemId" hidden>
         <button id="buttonOpen" name="openIt">Mark item open</button>
     </form>
     {{/if}}
