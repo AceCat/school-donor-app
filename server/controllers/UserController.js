@@ -25,6 +25,16 @@ router.get('/login', function(request, response){
   response.render('login')
 })
 
+router.get('/edit/:id', function(request, response) {
+  var id = request.params.id;
+  User.findById(id, function(err, user){
+    var sendOver = {user: user, session: request.session}
+    console.log(sendOver);
+    response.render('edit', sendOver)
+
+  })
+})
+
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   var onOwnPage = "";
@@ -135,6 +145,19 @@ router.patch('/:id', function(request, response){
   })
 })
 
+
+router.patch('/edit/:id', function(request, response){
+  var id = request.params.id;
+  User.findById(id, function(err, user){
+    user.name = request.body.name;
+    user.schoolType = request.body.schoolType;
+    user.address = request.body.address;
+    user.description = request.body.description;
+    user.image = request.body.image;
+    user.save();
+    response.send(id);
+  })
+})
 
 router.delete('/:id', function(request, response){
   var id = request.params.id;

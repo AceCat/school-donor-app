@@ -2,6 +2,7 @@ var createButton = $('#createUser');
 var loginButton = $('#loginSubmit');
 var changeItems = $("#changeItems")
 var submitSearch = $('#submitSearch');
+var submitButton = $('#submitEdit');
 
 
 createButton.click(function (){
@@ -28,6 +29,34 @@ createButton.click(function (){
 		success: function(response){
 			var dataId = response;
 			window.location.href = ("http://localhost:3000/users/" + dataId);
+		}
+	})
+})
+
+submitButton.click(function(){
+	console.log('clicked')
+	var name = $("#nameField").val();
+	var schoolType = $("#schoolTypeField").val();
+	var address = $("#addressField").val();
+	var description = $("#descriptionField").val();
+	var image = $("#imageField").val();
+	var newUserData = {
+		name: name,
+		schoolType: schoolType,
+		address: address,
+		description: description,
+		image: image,
+	};
+	var pageUrl = document.URL; // Get current url
+	var urlArray = pageUrl.split('/') // Split the string into an array with / as separator
+	var urlId = urlArray[urlArray.length-1];
+	$.ajax({
+		method: "PATCH",
+		url: "http://localhost:3000/users/edit/" + urlId,
+		data: newUserData,
+		success: function(response){
+			window.location.href = ("http://localhost:3000/users/" + urlId);
+
 		}
 	})
 })
