@@ -3,13 +3,20 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('../models/User');
-var Item = require('../models/Item')
+var Item = require('../models/Item');
+var path = require('path')
 
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/all', function(request, response){
     Item.find(function(error, items){
         response.json(items)
+    });
+});
+
+router.get('/browser', function(request, response){
+    Item.find(function(error, items){
+    response.render('browser', {items: items})
     });
 });
 
@@ -27,7 +34,7 @@ router.post('/search', function(request, response) {
     .exec(function(err, items) {
         console.log(items)
         var itemsObj = {items: items};
-        response.render('search', itemsObj)    
+        response.render('search', itemsObj)
     });
 
 

@@ -1,0 +1,13 @@
+<h2>View items near you</h2>
+
+<br />
+
+{{#each items}}
+  <div>
+      <a href='/users/{{this.owner}}'>{{this.name}}</a>
+      <div>
+        <img src="{{this.image}}"/>
+      </div>
+  </div>
+
+{{/each}}
