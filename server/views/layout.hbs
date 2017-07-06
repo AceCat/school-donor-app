@@ -3,11 +3,40 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <script type="text/javascript" href="/css/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link ref="stylesheet" href="/css/styles.css" charset="utf-8"/>
-        <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
     </head>
     <body>
+
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/users/" class="navbar-brand">School Donor</a>
+        </div>
+    {{#if session.loggedIn}}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/users/{{session.sessionId}}">Your Profile</a></li>
+        <li><a href="/users/edit/{{session.sessionId}}">Edit Profile</a></li>
+        <li><a href="/users/logout">Logout</a></li>
+    {{/if}}
+    {{#unless session.loggedIn}}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/users/register">Register</a></li>
+
+        <li>
+            <form class="navbar-form navbar-right" action='/users/login' method='POST'>
+            <div  class='form-group'>
+                <input class='form-control' name="email" placeholder='Email'>
+                <input class='form-control' name='password' placeholder='Password'>
+            </div>
+            <button class='btn-success'>Submit</button>
+            </form>
+        </li>
+        </ul>
+
+    {{/unless}}
+</nav>
+
         {{{body}}}
         <script type="text/javascript" src="/js/main.js"></script>
     </body>
