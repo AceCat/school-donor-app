@@ -5,7 +5,7 @@
         <title></title>
         <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-        <link ref="stylesheet" href="/css/styles.css" charset="utf-8"/>
+        <link rel="stylesheet" href="/css/styles.css" charset="utf-8"/>
     </head>
     <body>
 
@@ -15,7 +15,13 @@
             <a href="/users/" class="navbar-brand">School Donor</a>
         </div>
     {{#if session.loggedIn}}
-      <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-left">
+        <form class="navbar-form navbar-left" action='/item/search' method="POST">
+        <input name="searchTerm" id="searchBox" placeholder="Search our database">
+        <button id='submitSearch'>Search</button>
+    </form>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
         <li><a href="/users/{{session.sessionId}}">Your Profile</a></li>
         <li><a href="/users/edit/{{session.sessionId}}">Edit Profile</a></li>
         <li><a href="/users/logout">Logout</a></li>

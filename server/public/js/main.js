@@ -4,12 +4,28 @@ var changeItems = $("#changeItems")
 var submitSearch = $('#submitSearch');
 var submitButton = $('#submitEdit');
 
+$(document).ready(function() {
+	var schoolTypeField = $("#schoolTypeForm");
+  	$('#userTypeForm').on('change', function() {
+  	var userTypeInput = $('#userTypeForm').val();
+  	if (userTypeInput === 'School') {
+  		console.log('firing')
+  		schoolTypeField.prop("disabled", false);
+  		schoolTypeField.removeClass('disabled');
+  	} else {
+  		schoolTypeField.prop("disabled", true);
+  		schoolTypeField.addClass('disabled')
+  		console.log('School type stays hidden')
+  	}
+  })
+})
 
 createButton.click(function (){
 	var email = $("#emailForm").val();
 	var password = $('#passwordForm').val();
 	var name = $('#nameForm').val();
 	var userType = $('#userTypeForm').val();
+	var schoolType = $('#schoolTypeForm').val();
 	var address = $('#addressForm').val();
 	var image = $('#imageForm').val();
 	var description = $('#descriptionForm').val();
@@ -18,6 +34,7 @@ createButton.click(function (){
 		password: password,
 		name: name,
 		userType: userType,
+		schoolType: schoolType,
 		address: address,
 		image: image,
 		description: description

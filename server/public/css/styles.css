@@ -1,0 +1,13 @@
+select:disabled option{
+	background-color: red;
+	color: red;
+}
+
+option:disabled{
+	background: red;
+}
+
+.disabled {
+	background: grey;
+	opacity: 60%
+}
