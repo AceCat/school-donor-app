@@ -27,7 +27,7 @@ router.get('/login', function(request, response){
 
 router.get('/:id', function(request, response){
   var userId = request.params.id;
-  User.findById(userId).populate('openItems').exec(function (err, user){
+  User.findById(userId).populate('openItems').populate('closedItems').exec(function (err, user){
     response.render('profile', {user: user, loggedIn: true});
     console.log('session', request.session.loggedIn)
   })
@@ -67,7 +67,8 @@ router.post('/move-open', function (request, response){
     user.closedItems.addToSet(request.body.id);
     user.save();
   })
-  response.send("success")
+  response.redirect('/users/' + request.session.sessionId)
+
 });
 
 router.post('/move-closed', function (request, response){
@@ -76,7 +77,7 @@ router.post('/move-closed', function (request, response){
     user.openItems.addToSet(request.body.id);
     user.save();
   })
-  response.send("success")
+  response.redirect('/users/' + request.session.sessionId)
 });
 
 

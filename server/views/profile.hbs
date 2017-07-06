@@ -42,7 +42,7 @@
     	{{#if ../loggedIn}}
     <!-- move this item from openItems to closedItems -->
     	<form action="./move-open" method="POST">
-        	<input name="id" value="{{this.id}}" id="itemId"></p>
+        	<input name="id" value="{{this.id}}" id="itemId" hidden></p>
         	<button id="buttonClosed" name="openIt">Mark item closed</button>
     	</form>
     	{{/if}}
