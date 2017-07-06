@@ -27,8 +27,8 @@ router.get('/login', function(request, response){
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   User.findById(userId).populate('openItems').exec(function (err, user){
-    response.render('profile', {user: user, loggedIn: request.session.loggedIn});
-
+    response.render('profile', {user: user, loggedIn: true});
+    console.log('session', request.session.loggedIn)
   })
 })
 
@@ -59,6 +59,10 @@ router.post('/', function (request, response) {
   	})
 })
 
+
+router.post('/move', function (request, response){
+  Item.findById
+})
 //This is the login post route
 router.post('/login', function(request, response){
   User.findOne({email: request.body.email}, function(error, user){

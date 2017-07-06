@@ -60,8 +60,10 @@ $('#closedButton').click(function(){
 
 $('#buttonOpen').click(function(){
 	$('.closedItem').attr('class','.openItem')
+	$('.closedItem').remove()
 })
 
 $('#buttonClosed').click(function(){
 	$('.openItem').attr('class','.closedItem')
+	$('.openItem').remove()
 })
