@@ -20,6 +20,19 @@ router.get('/:id', function(request, response){
     });
 });
 
+router.post('/search', function(request, response) {
+    var searchTerm = request.body.searchTerm;
+    console.log(request.body.searchTerm);
+    Item.find({$text: {$search: searchTerm}})
+    .exec(function(err, items) {
+        console.log(items)
+        var itemsObj = {items: items};
+        response.render('search', itemsObj)    
+    });
+
+
+})
+
 router.post('/', function(request, response){
     var item = new Item({
         name: request.body.name,

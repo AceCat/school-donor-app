@@ -9,6 +9,9 @@ var ItemSchema = new mongoose.Schema({
 	ownerName: String
 });
 
+ItemSchema.index({'$**': 'text'});
+
+
 var itemModel = mongoose.model('Item', ItemSchema);
 
 module.exports = itemModel;

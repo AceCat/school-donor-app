@@ -1,4 +1,12 @@
+
 <h1>Welcome, {{user.name}}</h1>
+
+<form action='/item/search' method="POST">
+	<input name="searchTerm" id="searchBox" placeholder="Search our database">
+	<button id='submitSearch'>Search</button>
+</form>
+
+
 
 <p>{{user.name}}</p>
 <img src="{{user.image}}"/>
@@ -38,6 +46,11 @@
 
 {{#each user.closedItems}}
 <div class="closedItem">
+=======
+{{#if openItems}}
+{{#each openItems}}
+<div class="item">
+>>>>>>> search
     <h3>{{this.name}}</h3>
     <img src="{{this.image}}" />
     <p>{{this.description}}</p>
@@ -47,3 +60,5 @@
     {{/if}}
 </div>
 {{/each}}
+{{/if}}
+<button id="changeItems">View closed items</button>

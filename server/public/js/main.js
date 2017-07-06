@@ -1,5 +1,7 @@
 var createButton = $('#createUser');
 var loginButton = $('#loginSubmit');
+var changeItems = $("#changeItems")
+var submitSearch = $('#submitSearch');
 
 
 createButton.click(function (){
@@ -29,6 +31,20 @@ createButton.click(function (){
 		}
 	})
 })
+
+// submitSearch.click(function (){
+// 	var searchTerm = $('#searchBox').val();
+// 	$.ajax({
+// 		method: "POST",
+// 		url: "http://localhost:3000/item/search",
+// 		data: {searchTerm: searchTerm},
+// 		success: function(response){
+// 			console.log(response)
+// 		}
+// 	})
+// })
+
+
 
 // loginButton.click(function(){
 // 	console.log('clicked')
