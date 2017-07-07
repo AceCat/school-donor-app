@@ -51,11 +51,11 @@
                 <input name="itemId" value="{{this.id}}" id="itemId" hidden>
                 <button id="buttonOpen" name="openIt">Mark item open</button>
             </form>
-            <form name="buttonDelete" method="POST" action="/item/delete/{{this.id}}">
+            <!-- delete request -->
               <button id="deleteButton" name="buttonDelete">Delete Item</button>
               <input id="deleteId" name="itemDeleteId" value="{{this.id}}" hidden/>
               <input id="userId" name="userId" value="{{../user.id}}" hidden/>
-            </form>
+            <!-- end delete request -->
             {{/if}}
         	</div>
         {{/each}}
