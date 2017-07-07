@@ -42,13 +42,10 @@ router.get('/logout', function(request, response) {
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   var onOwnPage = "";
-  // console.log('something');
   if (userId === request.session.sessionId) {
     onOwnPage = true;
-    // console.log(onOwnPage, 1);
   } else {
     onOwnPage = false;
-    // console.log(onOwnPage, 2);
   }
   User.findById(userId).populate('openItems').populate('closedItems').exec(function (err, user){
     var pageLoad = {
@@ -94,14 +91,15 @@ router.post('/move-open', function (request, response){
   Item.findById(request.body.itemId, function(request, item) {
     item.open = false;
     item.save();
+    console.log(item);
   })
   User.findById(request.session.sessionId, function(err, user){
-    user.openItems.pop(request.body.itemId);
+    var indexToChange = user.openItems.indexOf(request.body.itemId);
+    user.openItems.splice(indexToChange, 1)
     user.closedItems.addToSet(request.body.itemId);
     user.save();
+    response.redirect('/users/' + request.session.sessionId)
   })
-  response.redirect('/users/' + request.session.sessionId)
-
 });
 
 router.post('/move-closed', function (request, response){
@@ -110,11 +108,13 @@ router.post('/move-closed', function (request, response){
     item.save();
   })
   User.findById(request.session.sessionId, function(err, user){
-    user.closedItems.pop(request.body.itemId);
+    var indexToChange = user.closedItems.indexOf(request.body.itemId);
+    user.closedItems.splice(indexToChange, 1)
     user.openItems.addToSet(request.body.itemId);
     user.save();
+    response.redirect('/users/' + request.session.sessionId)
+
   })
-  response.redirect('/users/' + request.session.sessionId)
 });
 
 

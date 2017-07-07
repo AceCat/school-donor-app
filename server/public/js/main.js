@@ -111,7 +111,8 @@ submitButton.click(function(){
 // })
 //these activate the open item list or closed item list
 
-$('.openItem').show()
+
+$('.closedItem').hide();
 
 $('#openButton').click(function(){
 	$('.openItem').show()
@@ -122,6 +123,7 @@ $('#closedButton').click(function(){
 	$('.openItem').hide();
 });
 //this closes or opens an item if the user is logged in
+
 
 $('#buttonOpen').click(function(){
 	$('.closedItem').attr('class','.openItem')
