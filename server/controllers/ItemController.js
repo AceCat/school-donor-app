@@ -59,6 +59,14 @@ router.post('/', function(request, response){
     })
 });
 
+router.post('/delete/:id', function(request, response){
+    var id = request.params.id
+    Item.findById(id, function(error, item){
+        item.remove()
+        response.redirect(request.headers.referer)
+    })
+})
+
 router.patch('/:id', function(request, response){
     //grab item key
     var id = request.params.id;

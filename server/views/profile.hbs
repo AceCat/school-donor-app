@@ -10,7 +10,7 @@
                 Place you new items here:
             </p>
             <input name="name" placeholder="name" id="itemNameForm">
-            <input name="open" placeholder="open" hidden id="itemNameForm" value="true">
+            <input name="open" placeholder="open" hidden id="itemOpenForm" value="true">
             <input name="image"placeholder="image" id="itemImageForm">
             <input name="description"placeholder="Please provide a description of the item" id='itemDescriptionForm'>
             <input name='ownerName' value='{{user.name}}' hidden>
@@ -50,6 +50,9 @@
             <form action="./move-closed" method="POST">
                 <input name="itemId" value="{{this.id}}" id="itemId" hidden>
                 <button id="buttonOpen" name="openIt">Mark item open</button>
+            </form>
+            <form name="buttonDelete" method="POST" action="/item/delete/{{this.id}}">
+              <button name="buttonDelete">Delete Item</button>
             </form>
             {{/if}}
         	</div>
