@@ -1,55 +1,56 @@
-<h1>{{user.name}}</h1>
-<img src="{{user.image}}"/>
-<p>{{user.description}}</p>
+        <h1>{{user.name}}</h1>
+        <img src="{{user.image}}"/>
+        <p>{{user.description}}</p>
 
-<h2>Items</h2>
+        <h2>Items</h2>
 
-<form class="itemForm" action="/item" method="post">
-    <p>
-        Place you new items here:
-    </p>
-    <input name="name" placeholder="name" id="itemNameForm">
-    <input name="open" placeholder="open" hidden id="itemNameForm" value="true">
-    <input name="image"placeholder="image" id="itemImageForm">
-    <input name="description"placeholder="Please provide a description of the item" id='itemDescriptionForm'>
-    <input name='ownerName' value='{{user.name}}' hidden>
-    <input name="owner" placeholder="owner" hidden id='itemDescriptionForm' value={{user.id}}>
-    <button id='createItem'>Submit</button>
-</form>
+        {{#if onOwnPage}}
+        <form class="itemForm" action="/item" method="post">
+            <p>
+                Place you new items here:
+            </p>
+            <input name="name" placeholder="name" id="itemNameForm">
+            <input name="open" placeholder="open" hidden id="itemNameForm" value="true">
+            <input name="image"placeholder="image" id="itemImageForm">
+            <input name="description"placeholder="Please provide a description of the item" id='itemDescriptionForm'>
+            <input name='ownerName' value='{{user.name}}' hidden>
+            <input name="owner" placeholder="owner" hidden id='itemDescriptionForm' value={{user.id}}>
+            <button id='createItem'>Submit</button>
+        </form>
 
-<br>
+        <br>
+        {{/if}}
+        <button id="openButton" name="openList">Open Items</button>
+        <button id="closedButton" name="closedList">Closed Items</button>
 
-<button id="openButton" name="openList">Open Items</button>
-<button id="closedButton" name="closedList">Closed Items</button>
+        {{#each user.openItems}}
+        	<div class="openItem">
+            	<h3>{{this.name}}</h3>
+            	<img src="{{this.image}}" />
+            	<p>{{this.description}}</p>
+            	<p>The owner of this item is {{this.ownerName}}</p>
+            	{{#if ../onOwnPage}}
+            <!-- move this item from openItems to closedItems -->
+            	<form action="./move-open" method="POST">
+                	<input name="itemId" value="{{this.id}}" hidden></p>
+                	<button id="buttonClosed" name="openIt">Mark item closed</button>
+            	</form>
+            	{{/if}}
+        	</div>
+        {{/each}}
 
-{{#each user.openItems}}
-	<div class="openItem">
-    	<h3>{{this.name}}</h3>
-    	<img src="{{this.image}}" />
-    	<p>{{this.description}}</p>
-    	<p>The owner of this item is {{this.ownerName}}</p>
-    	{{#if ../onOwnPage}}
-    <!-- move this item from openItems to closedItems -->
-    	<form action="./move-open" method="POST">
-        	<input name="itemId" value="{{this.id}}" hidden></p>
-        	<button id="buttonClosed" name="openIt">Mark item closed</button>
-    	</form>
-    	{{/if}}
-	</div>
-{{/each}}
-
-{{#each user.closedItems}}
-	<div class="closedItem">
-    <h3>{{this.name}}</h3>
-    <img src="{{this.image}}" />
-    <p>{{this.description}}</p>
-    <p>The owner of this item is {{this.ownerName}}</p>
-    {{#if ../onOwnPage}}
-    <!-- move this item from closedItems to openItems -->
-    <form action="./move-closed" method="POST">
-        <input name="itemId" value="{{this.id}}" id="itemId" hidden>
-        <button id="buttonOpen" name="openIt">Mark item open</button>
-    </form>
-    {{/if}}
-	</div>
-{{/each}}
+        {{#each user.closedItems}}
+        	<div class="closedItem">
+            <h3>{{this.name}}</h3>
+            <img src="{{this.image}}" />
+            <p>{{this.description}}</p>
+            <p>The owner of this item is {{this.ownerName}}</p>
+            {{#if ../onOwnPage}}
+            <!-- move this item from closedItems to openItems -->
+            <form action="./move-closed" method="POST">
+                <input name="itemId" value="{{this.id}}" id="itemId" hidden>
+                <button id="buttonOpen" name="openIt">Mark item open</button>
+            </form>
+            {{/if}}
+        	</div>
+        {{/each}}

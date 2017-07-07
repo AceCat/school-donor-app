@@ -42,13 +42,13 @@ router.get('/logout', function(request, response) {
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   var onOwnPage = "";
-  console.log('something');
+  // console.log('something');
   if (userId === request.session.sessionId) {
     onOwnPage = true;
-    console.log(onOwnPage, 1);
+    // console.log(onOwnPage, 1);
   } else {
     onOwnPage = false;
-    console.log(onOwnPage, 2);
+    // console.log(onOwnPage, 2);
   }
   User.findById(userId).populate('openItems').populate('closedItems').exec(function (err, user){
     var pageLoad = {
