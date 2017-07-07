@@ -111,6 +111,81 @@ submitButton.click(function(){
 // })
 //these activate the open item list or closed item list
 
+//Google maps stuff
+
+var findNearbyButton = $('#findNearby');
+var geocoder;
+var map;
+var address = $('#userAddress').text();
+var geoCodedAddress;
+
+function centerAddress (address) {
+	console.log("running")
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode({
+		'address': address
+	}, function (results, status) {
+		if (status === google.maps.GeocoderStatus.OK) {
+			var myOptions = {
+				zoom: 14,
+				center: results[0].geometry.location,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			geoCodedAddress = results[0].geometry.location;
+			map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+			var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+            });
+        }
+    });
+}
+
+
+
+findNearbyButton.click(function(){
+	console.log(geoCodedAddress)
+	var request = {
+		location: geoCodedAddress,
+		radius: '2000',
+		type: ['school']
+	}
+	service = new google.maps.places.PlacesService(map);
+	service.nearbySearch(request, callback);
+	function callback(results, status) {
+  	if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+    	console.log(results[i]);
+      	var place = results[i];
+      	createMarker(results[i]);
+    }
+  }
+}
+})
+
+function createMarker(place) {
+	var placeLoc = place.geometry.location;
+	var marker = new google.maps.Marker({
+    	map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+    	console.log('running')
+        // infowindow.setContent(place.name);
+        // infowindow.open(map, this);
+        });
+      }
+
+
+
+
+
+window.onload = function() {
+  centerAddress(address);
+};
+
 
 $('.closedItem').hide();
 

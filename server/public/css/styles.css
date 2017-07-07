@@ -36,3 +36,16 @@ ul.nav li a:hover{
 .navbar-header a:hover {
 	color: white !important;
 }
+
+.openItem {
+	background-color: #8FC2E8;
+}
+
+.closedItem {
+	background-color: #FFF9A0;
+}
+
+#map {
+	width: 200px;
+	height: 200px;
+}
