@@ -11,3 +11,28 @@ option:disabled{
 	background: grey;
 	opacity: 60%
 }
+
+.navbar-inverse {
+	background: rgb(241, 90, 34);
+}
+
+body {
+	background-color: rgb(255, 244, 238);
+}
+
+
+ul.nav li a, ul.nav li a {
+    color: black !important;
+}
+
+ul.nav li a:hover{
+    color: white !important;
+}
+
+.navbar-header a {
+	color: black !important;
+}
+
+.navbar-header a:hover {
+	color: white !important;
+}
