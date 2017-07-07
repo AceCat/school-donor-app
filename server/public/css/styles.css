@@ -36,3 +36,25 @@ ul.nav li a:hover{
 .navbar-header a:hover {
 	color: white !important;
 }
+
+#itemImage {
+	max-height: 80px;
+}
+
+#userImage {
+	height: 170px;
+	width: 170px;
+}
+.profile {
+	border-bottom: 2px solid black;
+}
+.items {
+	border-bottom: 2px solid black;
+}
+.closedItem {
+	border-bottom: 1px solid black;
+}
+
+.openItem {
+	border-bottom: 1px solid black;
+}

@@ -4,6 +4,7 @@ var changeItems = $("#changeItems")
 var submitSearch = $('#submitSearch');
 var submitButton = $('#submitEdit');
 var deleteButton = $('#deleteButton');
+var itemImage = $('#itemImage')
 
 $(document).ready(function() {
 	var schoolTypeField = $("#schoolTypeForm");
@@ -141,9 +142,16 @@ $('#closedButton').click(function(){
 $('#buttonOpen').click(function(){
 	$('.closedItem').attr('class','.openItem')
 	$('.closedItem').remove()
+	// $('#buttonClosed').css(opacity, 0.6)
 })
 
 $('#buttonClosed').click(function(){
 	$('.openItem').attr('class','.closedItem')
 	$('.openItem').remove()
+	// $('#buttonOpen').css(opacity, 0.6)
+
 })
+
+// itemImage.click(function(){
+// 	this.css('max-height', '80px')
+// })

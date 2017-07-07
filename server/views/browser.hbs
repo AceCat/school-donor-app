@@ -1,13 +1,18 @@
-<h2>View items near you</h2>
+<div class="container">
 
-<br />
-
-{{#each items}}
-  <div>
-      <a href='/users/{{this.owner}}'>{{this.name}}</a>
-      <div>
-        <img src="{{this.image}}"/>
-      </div>
+  <div class="row">
+    <h2>View all items</h2>
   </div>
+  <div class="row">
+    {{#each items}}
+      <div>
+          <a href='/users/{{this.owner}}'>{{this.name}}</a>
+          <div>
+            <img id="itemImage" src="{{this.image}}"/>
+          </div>
+          <p>The owner of this item is {{this.ownerName}}</p>
+      </div>
 
-{{/each}}
+    {{/each}}
+  </div>
+</div>
