@@ -3,6 +3,7 @@ var loginButton = $('#loginSubmit');
 var changeItems = $("#changeItems")
 var submitSearch = $('#submitSearch');
 var submitButton = $('#submitEdit');
+var deleteButton = $('#deleteButton');
 
 $(document).ready(function() {
 	var schoolTypeField = $("#schoolTypeForm");
@@ -74,6 +75,18 @@ submitButton.click(function(){
 		success: function(response){
 			window.location.href = ("http://localhost:3000/users/" + urlId);
 
+		}
+	})
+})
+
+deleteButton.click(function(){
+	var itemId = $('#deleteId').val();
+	var userId = $('#userId').val();
+	$.ajax({
+		method: "DELETE",
+		url: "http://localhost:3000/item/" + itemId,
+		success: function(response){
+			window.location.href = ("http://localhost:3000/users/" + userId);
 		}
 	})
 })
