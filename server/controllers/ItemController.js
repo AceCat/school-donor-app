@@ -30,7 +30,7 @@ router.get('/:id', function(request, response){
 router.post('/search', function(request, response) {
     var searchTerm = request.body.searchTerm;
     console.log(request.body.searchTerm);
-    Item.find({$text: {$search: searchTerm}})
+    Item.find({$text: {$search: searchTerm}, open: true})
     .exec(function(err, items) {
         console.log(items)
         var itemsObj = {items: items};

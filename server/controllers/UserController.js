@@ -98,7 +98,7 @@ router.post('/move-open', function (request, response){
 });
 
 router.post('/move-closed', function (request, response){
-  Item.findById(request.body.itemId, function(request, item) {
+  Item.findById(request.body.itemId, function(err, item) {
     item.open = true;
     item.save();
   })
