@@ -123,12 +123,12 @@ $('#closedButton').click(function(){
 });
 //this closes or opens an item if the user is logged in
 
-// $('#buttonOpen').click(function(){
-// 	$('.closedItem').attr('class','.openItem')
-// 	$('.closedItem').remove()
-// })
-//
-// $('#buttonClosed').click(function(){
-// 	$('.openItem').attr('class','.closedItem')
-// 	$('.openItem').remove()
-// })
+$('#buttonOpen').click(function(){
+	$('.closedItem').attr('class','.openItem')
+	$('.closedItem').remove()
+})
+
+$('#buttonClosed').click(function(){
+	$('.openItem').attr('class','.closedItem')
+	$('.openItem').remove()
+})
