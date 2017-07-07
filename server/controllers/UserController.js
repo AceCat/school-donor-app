@@ -32,7 +32,12 @@ router.get('/edit/:id', function(request, response) {
     response.render('edit', sendOver)
 
   })
-})
+});
+
+router.get('/logout', function(request, response) {
+  request.session.loggedIn = false;
+  response.redirect('/item/browser');
+});
 
 router.get('/:id', function(request, response){
   var userId = request.params.id;
@@ -54,6 +59,8 @@ router.get('/:id', function(request, response){
     response.render('profile', pageLoad);
   })
 });
+
+
 
 ///////////////////////////////////////////
 //POST REQUESTS
@@ -132,6 +139,7 @@ router.post('/login', function(request, response){
     }
   })
 });
+
 
 
 
