@@ -15,7 +15,7 @@ router.get('/all', function(request, response){
 });
 
 router.get('/browser', function(request, response){
-    Item.find(function(error, items){
+    Item.find( {open: true}, function(error, items){
     response.render('browser', {items: items})
     });
 });

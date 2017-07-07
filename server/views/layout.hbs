@@ -14,6 +14,9 @@
         <div class="navbar-header">
             <a href="/users/" class="navbar-brand">School Donor</a>
         </div>
+        <ul class='nav navbar-nav navbar-left'>
+            <li><a href="/item/browser">Browse</a></li>
+        </ul>
     {{#if session.loggedIn}}
     <ul class="nav navbar-nav navbar-left">
         <form class="navbar-form navbar-left" action='/item/search' method="POST">

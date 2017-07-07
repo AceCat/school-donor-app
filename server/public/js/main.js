@@ -110,6 +110,8 @@ submitButton.click(function(){
 // 	})
 // })
 //these activate the open item list or closed item list
+
+
 $('#openButton').click(function(){
 	$('.openItem').show()
 	$('.closedItem').hide()
