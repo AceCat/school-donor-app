@@ -49,3 +49,9 @@ ul.nav li a:hover{
 	width: 400px;
 	height: 400px;
 }
+#itemImage {
+	max-height: 80px;
+}
+#itemImageExpanded {
+	max-height: 180px;
+}
