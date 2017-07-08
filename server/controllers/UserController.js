@@ -9,11 +9,11 @@ var NodeGeocoder = require('node-geocoder');
 
 var options = {
   provider: 'google',
- 
-  // Optional depending on the providers 
-  httpAdapter: 'https', // Default 
-  apiKey: 'AIzaSyCooANqXEzmEUON691FrajORhBvhtbMrSY', // for Mapquest, OpenCage, Google Premier 
-  formatter: null         // 'gpx', 'string', ... 
+
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: 'AIzaSyCooANqXEzmEUON691FrajORhBvhtbMrSY', // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
 };
 
 var geocoder = NodeGeocoder(options);
@@ -93,6 +93,7 @@ router.post('/', function (request, response) {
   		password: hash,
         isSchool: request.body.isSchool,
         isUser: request.body.isUser,
+        schoolType: request.body.schoolType,
   		email: request.body.email,
   		address: request.body.address,
       latitude: latitude,
@@ -177,6 +178,7 @@ router.patch('/:id', function(request, response){
     user.password = request.body.password;
     user.isSchool = request.body.isSchool;
     user.isUser = request.body.isUser;
+    user.schoolType = request.body.schoolType;
     user.contact = request.body.contact;
     user.address = request.body.address;
     user.image = request.body.image
