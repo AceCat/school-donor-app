@@ -46,7 +46,7 @@
         {{#each user.closedItems}}
         	<div class="closedItem">
             <h3>{{this.name}}</h3>
-            <div><img id="itemImage" src="{{this.image}}" /></div>
+            <div><img class="unclicked" id="itemImage" src="{{this.image}}" /></div>
             <p>{{this.description}}</p>
             {{#if ../onOwnPage}}
             <!-- move this item from closedItems to openItems -->
