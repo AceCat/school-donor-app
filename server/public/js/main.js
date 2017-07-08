@@ -150,12 +150,33 @@ findNearbyButton.click(function(){
 		var latitude = userLocations[i].latitude ;
 		var longitude = userLocations[i].longitude;
 		var name = userLocations[i].name;
+		var description = userLocations[i].description;
+		var userId = userLocations[i]._id
+		console.log(userId)
+		var contentString = '<div id="content">'+
+            '<h1 id="firstHeading" class="firstHeading">' + name + '</h1>' +
+            '<div id="bodyContent">'+
+            '<p>' + description + '</p>' +
+            '<div class="view-link">' +
+            '<p>View page:' + "<a href=http://localhost:3000/users/" + 
+            userId + '>Link</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+		var infowindow = new google.maps.InfoWindow({
+        	content: contentString
+        });
+
 		var marker = new google.maps.Marker({
 			map: map,
 			position: {lat: latitude, lng: longitude},
 			title: name
 		})
-		console.log(marker.position)	
+		google.maps.event.addListener(marker, 'click', function() {
+        	infowindow.setContent(infowindow);
+        	infowindow.open(map, this);
+    });
 	}
 })
 // 	function callback(results, status) {
@@ -169,19 +190,13 @@ findNearbyButton.click(function(){
 // }
 // })
 
-function createMarker(place) {
-	var placeLoc = place.geometry.location;
-	var marker = new google.maps.Marker({
-    	map: map,
-        position: place.geometry.location
-    });
 
-    google.maps.event.addListener(marker, 'click', function() {
-    	console.log('running')
-        // infowindow.setContent(place.name);
-        // infowindow.open(map, this);
-        });
-      }
+
+    // google.maps.event.addListener(marker, 'click', function() {
+    // 	console.log('running')
+    //     infowindow.setContent(marker.title);
+    //     infowindow.open(map, this);
+    // });
 
 
 var userLocations;
