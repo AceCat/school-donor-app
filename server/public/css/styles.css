@@ -37,24 +37,15 @@ ul.nav li a:hover{
 	color: white !important;
 }
 
-#itemImage {
-	max-height: 80px;
-}
-
-#userImage {
-	height: 170px;
-	width: 170px;
-}
-.profile {
-	border-bottom: 2px solid black;
-}
-.items {
-	border-bottom: 2px solid black;
-}
-.closedItem {
-	border-bottom: 1px solid black;
-}
-
 .openItem {
-	border-bottom: 1px solid black;
+	background-color: #8FC2E8;
+}
+
+.closedItem {
+	background-color: #FFF9A0;
+}
+
+#map {
+	width: 400px;
+	height: 400px;
 }
