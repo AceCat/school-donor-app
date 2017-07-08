@@ -256,6 +256,6 @@ $('#buttonClosed').click(function(){
 
 })
 
-// itemImage.click(function(){
-// 	this.css('max-height', '80px')
-// })
+itemImage.click(function(){
+	
+})

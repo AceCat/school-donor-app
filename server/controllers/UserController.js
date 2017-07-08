@@ -91,7 +91,8 @@ router.post('/', function (request, response) {
   		name: request.body.name,
   		userType: request.body.type,
   		password: hash,
-  		schoolType: request.body.schoolType,
+        isSchool: request.body.isSchool,
+        isUser: request.body.isUser,
   		email: request.body.email,
   		address: request.body.address,
       latitude: latitude,
@@ -174,7 +175,8 @@ router.patch('/:id', function(request, response){
     user.name = request.body.name;
     user.userType = request.body.userType;
     user.password = request.body.password;
-    user.schoolType = request.body.schoolType;
+    user.isSchool = request.body.isSchool;
+    user.isUser = request.body.isUser;
     user.contact = request.body.contact;
     user.address = request.body.address;
     user.image = request.body.image
@@ -189,7 +191,8 @@ router.patch('/edit/:id', function(request, response){
   var id = request.params.id;
   User.findById(id, function(err, user){
     user.name = request.body.name;
-    user.schoolType = request.body.schoolType;
+    user.isSchool = request.body.isSchool;
+    user.isUser = request.body.isUser
     user.address = request.body.address;
     user.description = request.body.description;
     user.image = request.body.image;
