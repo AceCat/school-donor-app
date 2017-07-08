@@ -145,24 +145,29 @@ function centerAddress (address) {
 
 
 findNearbyButton.click(function(){
-	console.log(geoCodedAddress)
-	var request = {
-		location: geoCodedAddress,
-		radius: '2000',
-		type: ['school']
+	console.log(userLocations)
+	for (i = 0; i < userLocations.length; i++) {
+		var latitude = userLocations[i].latitude ;
+		var longitude = userLocations[i].longitude;
+		var name = userLocations[i].name;
+		var marker = new google.maps.Marker({
+			map: map,
+			position: {lat: latitude, lng: longitude},
+			title: name
+		})
+		console.log(marker.position)	
 	}
-	service = new google.maps.places.PlacesService(map);
-	service.nearbySearch(request, callback);
-	function callback(results, status) {
-  	if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-    	console.log(results[i]);
-      	var place = results[i];
-      	createMarker(results[i]);
-    }
-  }
-}
 })
+// 	function callback(results, status) {
+//   	if (status == google.maps.places.PlacesServiceStatus.OK) {
+//     for (var i = 0; i < results.length; i++) {
+//     	console.log(results[i]);
+//       	var place = results[i];
+//       	createMarker(results[i]);
+//     }
+//   }
+// }
+// })
 
 function createMarker(place) {
 	var placeLoc = place.geometry.location;
@@ -179,13 +184,22 @@ function createMarker(place) {
       }
 
 
-
+var userLocations;
 
 
 window.onload = function() {
   centerAddress(address);
 };
 
+ $(document).ready(function() {
+	$.ajax({
+		method: "GET",
+		url: "http://localhost:3000/users",
+		success: function(response) {
+			userLocations = response;
+		}
+	})
+});
 
 $('.closedItem').hide();
 
