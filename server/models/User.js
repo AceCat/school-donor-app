@@ -7,6 +7,8 @@ var UserSchema = new mongoose.Schema({
   schoolType: String,
   email: String,
   address: String,
+  latitude: Number,
+  longitude: Number,
   image: String,
   description: String,
 	openItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],

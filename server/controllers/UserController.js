@@ -5,6 +5,19 @@ var Item = require('../models/Item');
 var bodyParser = require('body-parser');
 var path = require('path');
 var bcrypt = require('bcryptjs');
+var NodeGeocoder = require('node-geocoder');
+
+var options = {
+  provider: 'google',
+ 
+  // Optional depending on the providers 
+  httpAdapter: 'https', // Default 
+  apiKey: 'AIzaSyCooANqXEzmEUON691FrajORhBvhtbMrSY', // for Mapquest, OpenCage, Google Premier 
+  formatter: null         // 'gpx', 'string', ... 
+};
+
+var geocoder = NodeGeocoder(options);
+
 
 router.use(bodyParser.urlencoded({extended: true}));
 
@@ -12,7 +25,7 @@ router.get('/', function (request, response) {
 User.find(function(error, users) {
       var session = request.session;
       var allUsers = {allUsers: users, session: session};
-    response.json(users);
+    response.send(users);
   })
 });
 
@@ -65,6 +78,14 @@ router.get('/:id', function(request, response){
 //A post request to /users
 
 router.post('/', function (request, response) {
+  var address = request.body.address;
+  var latitude;
+  var longitude;
+  geocoder.geocode(address, function(err, res) {
+    console.log(res);
+    console.log(res[0])
+    latitude = res[0].latitude
+    longitude = res[0].longitude
   bcrypt.hash(request.body.password, 10, function(error, hash){
   	var user = new User ({
   		name: request.body.name,
@@ -73,6 +94,8 @@ router.post('/', function (request, response) {
   		schoolType: request.body.schoolType,
   		email: request.body.email,
   		address: request.body.address,
+      latitude: latitude,
+      longitude: longitude,
   		image: request.body.image,
   		description: request.body.description
   	})
@@ -80,10 +103,11 @@ router.post('/', function (request, response) {
 //Posting to this route will set a global session variable of logged-in to true
 //and set a global variable that's equal to the user's ID
   	userId = user.id;
-  	// request.session.loggedIn = true;
-  	// request.session.sessionId = userId;
+  	request.session.loggedIn = true;
+  	request.session.sessionId = userId;
     response.send(userId);
   	})
+  })
 })
 
 
