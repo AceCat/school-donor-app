@@ -1,13 +1,21 @@
-
+<div class="container">
+<div class="row">
+	<div class="col-lg-6">
         <h1>{{user.name}}</h1>
+        <img src="{{user.image}}"/>
         <h2>{{user.schoolType}}</h2>
         <p id='userAddress'>{{user.address}}</p>
-        <img src="{{user.image}}"/>
         <p>{{user.description}}</p>
+    </div>
+    <div class="col-lg-6">
+    	<h1>Location</h1>
 		<div id="map"></div>
+		<button id="findNearby">Find nearby schools</button>
+
+	</div>
+</div>
 
 
-        <button id="findNearby">Find nearby schools</button>
 
           {{#if onOwnPage}}
           <form class="itemForm" action="/item" method="post">
@@ -93,3 +101,4 @@
         		<p>{{../user.name}} fulfilled this request for {{this.ownerName}}</p>
         	{{/unless}}
         {{/each}}
+</div>
