@@ -55,13 +55,16 @@ createButton.click(function (){
 submitButton.click(function(){
 	console.log('clicked')
 	var name = $("#nameField").val();
-	var schoolType = $("#schoolTypeField").val();
+	var schoolType = $("#schoolTypeForm").val();
+	var isSchool = $("#isSchool").val();
 	var address = $("#addressField").val();
 	var description = $("#descriptionField").val();
 	var image = $("#imageField").val();
+	console.log(schoolType)
 	var newUserData = {
 		name: name,
 		schoolType: schoolType,
+		isSchool: isSchool,
 		address: address,
 		description: description,
 		image: image,

@@ -199,7 +199,6 @@ router.patch('/:id', function(request, response){
     user.userType = request.body.userType;
     user.password = request.body.password;
     user.isSchool = request.body.isSchool;
-    user.isUser = request.body.isUser;
     user.schoolType = request.body.schoolType;
     user.contact = request.body.contact;
     user.address = request.body.address;

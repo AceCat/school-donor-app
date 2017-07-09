@@ -2,14 +2,25 @@
 <h1>Update your information</h1>
 		<label for='nameField'>Name</label>
 		<input class='editField' value="{{user.name}}" id="nameField">
-		<label for='schoolTypeField'>School Type</label>
-		<input class='editField' value="{{user.schoolType}}" id="schoolTypeField">
+		{{#if user.isSchool}}
+		<input id="isSchool" value="true" hidden>
+		<label for='schoolTypeForm'>Type of school</label>
+			<select id="schoolTypeForm" class="editField">
+				<option value="Neighborhood school">I'm registering a neighborhood school</option>
+				<option value="Charter school">I'm registering a charter school</option>
+				<option value="Private school">I'm registering a private school</option>
+				<option value="Magnet school">I'm registering a magnet school</option>
+	</select>
+
+{{!-- 		<input class='editField' value="{{user.schoolType}}" id="schoolTypeField">
+ --}}
+
+
+		{{/if}}
 		<label for='addressField'>Address</label>
 		<input class='editField' value="{{user.address}}" id="addressField">
 		<label for='descriptionField'>Description</label>
 		<input class='editField' value="{{user.description}}" id='descriptionField'>
 		<label for='imageField'>Image URL</label>
 		<input class='editField' value="{{user.image}}" id='imageField'>
-<h2>Enter your interests</h2>
-
 <button id='submitEdit'>Submit</button>
