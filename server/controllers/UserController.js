@@ -143,6 +143,25 @@ router.post('/move-closed', function (request, response){
   })
 });
 
+router.post('/claim-item', function (request, response){
+  Item.findById(request.body.itemId, function (err, item){
+    item.claimed = true;
+    item.save();
+  })
+  User.findById(request.session.sessionId, function(err, user){
+    user.claimedItems.addToSet(request.body.itemId);
+    user.save();
+  })
+  User.findById(request.body.ownerId, function(err, user){
+    console.log(user)
+    var indexToChange = user.openItems.indexOf(request.body.itemId);
+    user.openItems.splice(indexToChange, 1);
+    user.closedItems.addToSet(request.body.itemId);
+    user.save();
+    response.redirect('/users/' + request.session.sessionId)
+  })
+})
+
 
 
 

@@ -39,10 +39,17 @@
             	{{#if ../onOwnPage}}
             <!-- move this item from openItems to closedItems -->
             	<form action="./move-open" method="POST">
-                	<input name="itemId" value="{{this.id}}" hidden></p>
+                	<input name="itemId" value="{{this.id}}" hidden>
                 	<button id="buttonClosed" name="openIt">Mark item closed</button>
             	</form>
             	{{/if}}
+            	{{#unless ../ownPage}}
+            		<form action="./claim-item" method="POST">
+            			<input name="itemId" value="{{this.id}}" hidden>           <input name='ownerId' value='{{../user.id}}' hidden>
+
+            			<button id="claimButton">Claim item</button>
+
+            	{{/unless}}
         	</div>
         {{/each}}
 
