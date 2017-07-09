@@ -156,7 +156,12 @@ function centerAddress (address) {
     });
 }
 
-
+function bindInfoWindow(marker, map, infowindow, html) {
+    marker.addListener('click', function() {
+        infowindow.setContent(html);
+        infowindow.open(map, this);
+    });
+} 
 
 findNearbyButton.click(function(){
 	console.log(userLocations)
@@ -166,7 +171,6 @@ findNearbyButton.click(function(){
 		var name = userLocations[i].name;
 		var description = userLocations[i].description;
 		var userId = userLocations[i]._id
-		console.log(userId)
 		var contentString = '<div id="content">'+
             '<h1 id="firstHeading" class="firstHeading">' + name + '</h1>' +
             '<div id="bodyContent">'+
@@ -178,19 +182,16 @@ findNearbyButton.click(function(){
             '</div>' +
             '</div>';
 
+        var marker = new google.maps.Marker({
+			map: map,
+			position: {lat: latitude, lng: longitude},
+		})
+
 		var infowindow = new google.maps.InfoWindow({
         	content: contentString
         });
 
-		var marker = new google.maps.Marker({
-			map: map,
-			position: {lat: latitude, lng: longitude},
-			title: name
-		})
-		google.maps.event.addListener(marker, 'click', function() {
-        	infowindow.setContent(infowindow);
-        	infowindow.open(map, this);
-    });
+		bindInfoWindow(marker, map, infowindow, contentString); 
 	}
 })
 // 	function callback(results, status) {
@@ -256,31 +257,31 @@ window.onload = function() {
 
 
 
-$('.closedItem').hide();
+// $('.closedItem').hide();
 
-$('#openButton').click(function(){
-	$('.openItem').show()
-	$('.closedItem').hide()
-});
-$('#closedButton').click(function(){
-	$('.closedItem').show();
-	$('.openItem').hide();
-});
-//this closes or opens an item if the user is logged in
+// $('#openButton').click(function(){
+// 	$('.openItem').show()
+// 	$('.closedItem').hide()
+// });
+// $('#closedButton').click(function(){
+// 	$('.closedItem').show();
+// 	$('.openItem').hide();
+// });
+// //this closes or opens an item if the user is logged in
 
 
-$('#buttonOpen').click(function(){
-	$('.closedItem').attr('class','.openItem')
-	$('.closedItem').remove()
-	// $('#buttonClosed').css(opacity, 0.6)
-})
+// $('#buttonOpen').click(function(){
+// 	$('.closedItem').attr('class','.openItem')
+// 	$('.closedItem').remove()
+// 	// $('#buttonClosed').css(opacity, 0.6)
+// })
 
-$('#buttonClosed').click(function(){
-	$('.openItem').attr('class','.closedItem')
-	$('.openItem').remove()
-	// $('#buttonOpen').css(opacity, 0.6)
+// $('#buttonClosed').click(function(){
+// 	$('.openItem').attr('class','.closedItem')
+// 	$('.openItem').remove()
+// 	// $('#buttonOpen').css(opacity, 0.6)
 
-})
+// })
 
 itemImage.click(function(){
 	
