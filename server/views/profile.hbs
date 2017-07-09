@@ -25,14 +25,22 @@
 
           <br>
           {{/if}}
-          <button id="openButton" name="openList">Open Items</button>
-          <button id="closedButton" name="closedList">Closed Items</button>
+{{!--           <button id="openButton">Open Items</button>
+          <button id="closedButton">Closed Items</button>
+          <button id="claimedButton">Claimed Items</button> --}}
+
+        <div class="tab">
+  			<button class="tablinks" onclick="openList(event, 'openItems')">Open Items</button>
+  			<button class="tablinks" onclick="openList(event, 'closedItems')">Closed Items</button>
+  			<button class="tablinks" onclick="openList(event, 'claimedItems')">Claimed Items</button>
+		</div>
+
       </div>
       <div class="row">
 
       </div>
         {{#each user.openItems}}
-        	<div class="openItem">
+        	<div id="openItems" class="tabcontent">
             	<h3>{{this.name}}</h3>
               <div><img id="itemImage" alt="Item Image" src="{{this.image}}"/></div>
             	<p>{{this.description}}</p>
@@ -54,7 +62,7 @@
         {{/each}}
 
         {{#each user.closedItems}}
-        	<div class="closedItem">
+        	<div id="closedItems" class='tabcontent'>
             <h3>{{this.name}}</h3>
             <div><img class="unclicked" id="itemImage" src="{{this.image}}" /></div>
             <p>{{this.description}}</p>
@@ -71,4 +79,17 @@
             <!-- end delete request -->
             {{/if}}
         	</div>
+        {{/each}}
+
+        {{#each user.claimedItems}}
+        	<div id="claimedItems" class='tabcontent'>
+        	<h3>{{this.name}}</h3>
+        	<div><img src="{{this.image}}"/></div>
+        	<p>{{this.description}}</p>
+        	{{#if ../user.isSchool}}
+        		<p>This item was donated by {{this.owner}}</p>
+        	{{/if}}
+        	{{#unless ../user.isSchool}}
+        		<p>{{../user.name}} fulfilled this request for {{this.ownerName}}</p>
+        	{{/unless}}
         {{/each}}

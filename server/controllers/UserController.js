@@ -60,7 +60,7 @@ router.get('/:id', function(request, response){
   } else {
     onOwnPage = false;
   }
-  User.findById(userId).populate('openItems').populate('closedItems').exec(function (err, user){
+  User.findById(userId).populate('openItems').populate('closedItems').populate('claimedItems').exec(function (err, user){
     var pageLoad = {
       user: user,
       onOwnPage: onOwnPage,
@@ -82,10 +82,13 @@ router.post('/', function (request, response) {
   var latitude;
   var longitude;
   geocoder.geocode(address, function(err, res) {
+    if (err) {
+    } else {
     console.log(res);
     console.log(res[0])
     latitude = res[0].latitude
     longitude = res[0].longitude
+  }
   bcrypt.hash(request.body.password, 10, function(error, hash){
   	var user = new User ({
   		name: request.body.name,
