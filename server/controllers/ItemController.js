@@ -15,8 +15,9 @@ router.get('/all', function(request, response){
 });
 
 router.get('/browser', function(request, response){
+    var session = request.session;
     Item.find( {open: true}, function(error, items){
-    response.render('browser', {items: items})
+        response.render('browser', {items: items, session: session})
     });
 });
 
