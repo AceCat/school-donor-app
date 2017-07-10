@@ -5,14 +5,14 @@
   </div>
 
     <div class="tab">
-        <button class="tablinks" onclick="openList(event, 'ownerIsSchool')">School Items</button>
-        <button class="tablinks" onclick="openList(event, 'ownerIsDonor')">Donor Items</button>
+        <button id="schoolOwned">School Items</button>
+        <button id="donorOwned">Donor Items</button>
     </div>
 
   <div class="row">
     {{#each items}}
     {{#if this.ownerIsSchool}}
-      <div id="ownerIsSchool" class="tabcontent">
+      <div class="ownerIsSchool" class="tabcontent">
           <a href='/users/{{this.owner}}'>{{this.name}}</a>
           <div>
             <img id="itemImage" src="{{this.image}}"/>
@@ -25,7 +25,7 @@
 
     {{#each items}}
     {{#unless this.ownerIsSchool}}
-      <div id="ownerIsDonor" class="tabcontent">
+      <div class="ownerIsDonor" class="tabcontent">
           <a href='/users/{{this.owner}}'>{{this.name}}</a>
           <div>
             <img id="itemImage" src="{{this.image}}"/>

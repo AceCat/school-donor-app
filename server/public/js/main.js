@@ -244,41 +244,41 @@ window.onload = function() {
 });
 
 
-function openList(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-///
-
-
-
-
 $('.closedItem').hide();
+$('.claimedItem').hide();
+// $('.ownerIsSchool').hide();
+// $('.ownerIsDonor')hide();
 
 $('#openButton').click(function(){
 	$('.openItem').show()
 	$('.closedItem').hide()
+	$('.claimedItem').hide();
 });
 $('#closedButton').click(function(){
 	$('.closedItem').show();
 	$('.openItem').hide();
+	$('.claimedItem').hide();
+
 });
+
+$('#claimedButton').click(function(){
+	$('.claimedItem').show();
+	$('.openItem').hide();
+	$('.closedItem').hide();
+
+});
+
+$('#schoolOwned').click(function(){
+	$('.ownerIsSchool').show();
+	$('.ownerIsDonor').hide();
+});
+
+$('#donorOwned').click(function(){
+	$('.ownerIsDonor').show();
+	$('.ownerIsSchool').hide();
+});
+
+
 //this closes or opens an item if the user is logged in
 
 
@@ -292,7 +292,6 @@ $('#buttonClosed').click(function(){
 	$('.openItem').attr('class','.closedItem')
 	$('.openItem').remove()
 	// $('#buttonOpen').css(opacity, 0.6)
-
 })
 
 itemImage.click(function(){
