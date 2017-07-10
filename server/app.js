@@ -1,11 +1,13 @@
+var dotenv = require('dotenv').config()
 var express = require('express');
 var path = require('path');
 var app = express();
 var session = require('express-session');
 var handlebars = require('hbs');
 var server = require('http').createServer(app);
-var UsersController = require('./controllers/UserController.js')
-var ItemController = require('./controllers/ItemController')
+var UsersController = require('./controllers/UserController.js');
+var ItemController = require('./controllers/ItemController');
+
 
 
 app.use(session({
