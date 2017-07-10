@@ -42,6 +42,7 @@
           <button id="claimedButton">Claimed Items</button>
           </div>
 
+
       </div>
       <div class="row">
       </div>
@@ -90,7 +91,7 @@
         {{#each user.claimedItems}}
         	<div class="claimedItem">
         	<h3>{{this.name}}</h3>
-        	<div><img src="{{this.image}}"/></div>
+        	<div><img id='itemImage' src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>
         	{{#if ../user.isSchool}}
         		<p>This item was donated by {{this.ownerName}}</p>

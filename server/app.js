@@ -5,10 +5,11 @@ var app = express();
 var session = require('express-session');
 var handlebars = require('hbs');
 var server = require('http').createServer(app);
-var UsersController = require('./controllers/UserController.js');
-var ItemController = require('./controllers/ItemController');
 
-var port = process.env.PORT || 3000;
+var UsersController = require('./controllers/UserController.js')
+var ItemController = require('./controllers/ItemController')
+
+var port = server.listen(process.env.PORT || 3000);
 
 
 app.use(session({
@@ -33,5 +34,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 server.listen(port, function () {
+
 	console.log("listening on port " + port);
 })

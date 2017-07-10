@@ -65,7 +65,7 @@ submitButton.click(function(){
 		var schoolType = "";
 	} else {
 		var schoolType = $("#schoolTypeForm").val();
-	}		
+	}
 	var isSchool = $("#isSchool").val();
 	var address = $("#addressField").val();
 	var description = $("#descriptionField").val();
@@ -173,7 +173,7 @@ function bindInfoWindow(marker, map, infowindow, html) {
         infowindow.setContent(html);
         infowindow.open(map, this);
     });
-} 
+}
 
 findNearbyButton.click(function(){
 	console.log(userLocations)
@@ -188,8 +188,7 @@ findNearbyButton.click(function(){
             '<div id="bodyContent">'+
             '<p>' + description + '</p>' +
             '<div class="view-link">' +
-            '<p>View page:' + "<a href=./users/" + 
-            userId + '>Link</a>' +
+            '<p>View page:' + "<a href=./users/" + userId + '>Link</a>' +
             '</div>' +
             '</div>' +
             '</div>';
@@ -203,7 +202,7 @@ findNearbyButton.click(function(){
         	content: contentString
         });
 
-		bindInfoWindow(marker, map, infowindow, contentString); 
+		bindInfoWindow(marker, map, infowindow, contentString);
 	}
 })
 // 	function callback(results, status) {
@@ -297,8 +296,4 @@ $('#buttonClosed').click(function(){
 	$('.openItem').attr('class','.closedItem')
 	$('.openItem').remove()
 	// $('#buttonOpen').css(opacity, 0.6)
-})
-
-itemImage.click(function(){
-	
 })
