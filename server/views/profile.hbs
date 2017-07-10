@@ -36,15 +36,11 @@
 
           <br>
           {{/if}}
-          <button id="openButton">Open Items</button>
+          <div class="tab">
+          <button id="openButton" class="tab">Open Items</button>
           <button id="closedButton">Closed Items</button>
           <button id="claimedButton">Claimed Items</button>
-{{!-- 
-        <ul class="tabs">
-  			<button class="tablinks" id="openItemTab">Open Items</button>
-  			<button class="tablinks">Closed Items</button>
-  			<button class="tablinks">Claimed Items</button>
-		</ul> --}}
+          </div>
 
       </div>
       <div class="row">
@@ -64,7 +60,8 @@
             	{{#unless ../ownPage}}
             		<form action="./claim-item" method="POST">
             			<input name="itemId" value="{{this.id}}" hidden>          <input name='ownerId' value='{{../user.id}}' hidden>
-            			<button id="claimButton">Claim item</button>
+            		<button id="claimButton">Claim item</button>
+            		</form>
 
             	{{/unless}}
         	</div>
@@ -91,12 +88,12 @@
         {{/each}}
 
         {{#each user.claimedItems}}
-        	<div class="claimedItems">
+        	<div class="claimedItem">
         	<h3>{{this.name}}</h3>
         	<div><img src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>
         	{{#if ../user.isSchool}}
-        		<p>This item was donated by {{this.owner}}</p>
+        		<p>This item was donated by {{this.ownerName}}</p>
         	{{/if}}
         	{{#unless ../user.isSchool}}
         		<p>{{../user.name}} fulfilled this request for {{this.ownerName}}</p>

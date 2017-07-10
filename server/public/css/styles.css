@@ -60,14 +60,14 @@ ul.nav li a:hover{
 }
 
 /* Style the tab */
-.tab {
+div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
-.tab {
+div.tab button {
     background-color: inherit;
     float: left;
     border: none;

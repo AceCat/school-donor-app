@@ -250,21 +250,26 @@ $('.claimedItem').hide();
 // $('.ownerIsDonor')hide();
 
 $('#openButton').click(function(){
+	$('.active').removeClass('active');
 	$('.openItem').show()
 	$('.closedItem').hide()
 	$('.claimedItem').hide();
+	$('#openButton').addClass('active')
 });
 $('#closedButton').click(function(){
+	$('.active').removeClass('active');
 	$('.closedItem').show();
 	$('.openItem').hide();
 	$('.claimedItem').hide();
-
+	$('#closedButton').addClass('active')
 });
 
 $('#claimedButton').click(function(){
+	$('.active').removeClass('active');
 	$('.claimedItem').show();
 	$('.openItem').hide();
 	$('.closedItem').hide();
+	$('#claimedButton').addClass('active')
 
 });
 
