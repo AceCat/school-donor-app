@@ -7,6 +7,8 @@ var server = require('http').createServer(app);
 var UsersController = require('./controllers/UserController.js')
 var ItemController = require('./controllers/ItemController')
 
+require('dotenv').config()
+
 
 app.use(session({
 	secret: "I'm very secretive",
