@@ -55,7 +55,9 @@ ul.nav li a:hover{
 #itemImageExpanded {
 	max-height: 180px;
 }
-
+#profileImage{
+    max-height: 180px;
+}
 
 /* Style the tab */
 div.tab {
