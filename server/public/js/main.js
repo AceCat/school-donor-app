@@ -48,11 +48,11 @@ createButton.click(function (){
 	};
 	$.ajax({
 		method: "POST",
-		url: "http://localhost:3000/users",
+		url: "../users",
 		data: newUser,
 		success: function(response){
 			var dataId = response;
-			window.location.href = ("http://localhost:3000/users/" + dataId);
+			window.location.href = ("../users/" + dataId);
 		}
 	})
 })
@@ -83,10 +83,10 @@ submitButton.click(function(){
 	var urlId = urlArray[urlArray.length-1];
 	$.ajax({
 		method: "PATCH",
-		url: "http://localhost:3000/users/edit/" + urlId,
+		url: "../users/edit/" + urlId,
 		data: newUserData,
 		success: function(response){
-			window.location.href = ("http://localhost:3000/users/" + urlId);
+			window.location.href = ("../users/" + urlId);
 
 		}
 	})
@@ -97,9 +97,9 @@ deleteButton.click(function(){
 	var userId = $('#userId').val();
 	$.ajax({
 		method: "DELETE",
-		url: "http://localhost:3000/item/" + itemId,
+		url: "../item/" + itemId,
 		success: function(response){
-			window.location.href = ("http://localhost:3000/users/" + userId);
+			window.location.href = ("../users/" + userId);
 		}
 	})
 })
@@ -108,7 +108,7 @@ deleteButton.click(function(){
 // 	var searchTerm = $('#searchBox').val();
 // 	$.ajax({
 // 		method: "POST",
-// 		url: "http://localhost:3000/item/search",
+// 		url: "../item/search",
 // 		data: {searchTerm: searchTerm},
 // 		success: function(response){
 // 			console.log(response)
@@ -129,7 +129,7 @@ deleteButton.click(function(){
 // 	$.ajax({
 // 		method: "POST",
 // 		data: userInfo,
-// 		url: "http://localhost:3000/users/login",
+// 		url: "../users/login",
 // 		success: function(response){
 // 			console.log(response);
 // 		}
@@ -188,7 +188,7 @@ findNearbyButton.click(function(){
             '<div id="bodyContent">'+
             '<p>' + description + '</p>' +
             '<div class="view-link">' +
-            '<p>View page:' + "<a href=http://localhost:3000/users/" + 
+            '<p>View page:' + "<a href=./users/" + 
             userId + '>Link</a>' +
             '</div>' +
             '</div>' +
@@ -236,7 +236,7 @@ window.onload = function() {
  $(document).ready(function() {
 	$.ajax({
 		method: "GET",
-		url: "http://localhost:3000/users",
+		url: "../users",
 		success: function(response) {
 			userLocations = response;
 		}
