@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -7,7 +9,6 @@ var server = require('http').createServer(app);
 var UsersController = require('./controllers/UserController.js')
 var ItemController = require('./controllers/ItemController')
 
-require('dotenv').config()
 
 
 app.use(session({
