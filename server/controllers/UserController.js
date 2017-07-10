@@ -148,7 +148,6 @@ router.post('/move-closed', function (request, response){
 
 router.post('/claim-item', function (request, response){
   Item.findById(request.body.itemId, function (err, item){
-    // item.claimed = true;
     item.open = false;
     item.save();
   })
