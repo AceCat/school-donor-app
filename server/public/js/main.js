@@ -23,11 +23,16 @@ $(document).ready(function() {
 })
 
 createButton.click(function (){
+	var schoolTypeFormDisabled = $('#schoolTypeForm').hasClass('disabled');
 	var email = $("#emailForm").val();
 	var password = $('#passwordForm').val();
 	var name = $('#nameForm').val();
 	var userType = $('#userTypeForm').val();
-	var schoolType = $('#schoolTypeForm').val();
+	if (schoolTypeFormDisabled === true){
+		var schoolType;
+	} else {
+		var schoolType = $('#schoolTypeForm').val();
+	}
 	var address = $('#addressForm').val();
 	var image = $('#imageForm').val();
 	var description = $('#descriptionForm').val();
@@ -54,13 +59,17 @@ createButton.click(function (){
 
 submitButton.click(function(){
 	console.log('clicked')
+	schoolTypeForm = $('#schoolTypeForm');
 	var name = $("#nameField").val();
-	var schoolType = $("#schoolTypeForm").val();
+	if (schoolTypeForm.hasClass('disabled') === true){
+		var schoolType = "";
+	} else {
+		var schoolType = $("#schoolTypeForm").val();
+	}		
 	var isSchool = $("#isSchool").val();
 	var address = $("#addressField").val();
 	var description = $("#descriptionField").val();
 	var image = $("#imageField").val();
-	console.log(schoolType)
 	var newUserData = {
 		name: name,
 		schoolType: schoolType,
