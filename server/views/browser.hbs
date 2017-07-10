@@ -3,17 +3,37 @@
   <div class="row">
     <h2>View all items</h2>
   </div>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openList(event, 'ownerIsSchool')">School Items</button>
+        <button class="tablinks" onclick="openList(event, 'ownerIsDonor')">Donor Items</button>
+    </div>
+
   <div class="row">
     {{#each items}}
-      <div>
+    {{#if this.ownerIsSchool}}
+      <div id="ownerIsSchool" class="tabcontent">
+          <a href='/users/{{this.owner}}'>{{this.name}}</a>
+          <div>
+            <img id="itemImage" src="{{this.image}}"/>
+          </div>
+          <p>{{this.description}}</p>
+          <p>The owner of this item is {{this.ownerName}}</p>  
+      </div>
+      {{/if}}
+    {{/each}}
+
+    {{#each items}}
+    {{#unless this.ownerIsSchool}}
+      <div id="ownerIsDonor" class="tabcontent">
           <a href='/users/{{this.owner}}'>{{this.name}}</a>
           <div>
             <img id="itemImage" src="{{this.image}}"/>
           </div>
           <p>{{this.description}}</p>
           <p>The owner of this item is {{this.ownerName}}</p>
-      </div>
-
+    {{/unless}}
     {{/each}}
+
   </div>
 </div>
