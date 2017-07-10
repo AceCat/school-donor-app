@@ -6,7 +6,8 @@ var ItemSchema = new mongoose.Schema({
 	image: String,
 	description: String,
 	owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	ownerName: String
+	ownerName: String,
+	ownerIsSchool: Boolean
 });
 
 ItemSchema.index({'$**': 'text'});

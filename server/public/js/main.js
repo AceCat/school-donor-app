@@ -244,7 +244,7 @@ window.onload = function() {
 });
 
 
- function openList(evt, tabName) {
+function openList(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -269,31 +269,31 @@ window.onload = function() {
 
 
 
-// $('.closedItem').hide();
+$('.closedItem').hide();
 
-// $('#openButton').click(function(){
-// 	$('.openItem').show()
-// 	$('.closedItem').hide()
-// });
-// $('#closedButton').click(function(){
-// 	$('.closedItem').show();
-// 	$('.openItem').hide();
-// });
-// //this closes or opens an item if the user is logged in
+$('#openButton').click(function(){
+	$('.openItem').show()
+	$('.closedItem').hide()
+});
+$('#closedButton').click(function(){
+	$('.closedItem').show();
+	$('.openItem').hide();
+});
+//this closes or opens an item if the user is logged in
 
 
-// $('#buttonOpen').click(function(){
-// 	$('.closedItem').attr('class','.openItem')
-// 	$('.closedItem').remove()
-// 	// $('#buttonClosed').css(opacity, 0.6)
-// })
+$('#buttonOpen').click(function(){
+	$('.closedItem').attr('class','.openItem')
+	$('.closedItem').remove()
+	// $('#buttonClosed').css(opacity, 0.6)
+})
 
-// $('#buttonClosed').click(function(){
-// 	$('.openItem').attr('class','.closedItem')
-// 	$('.openItem').remove()
-// 	// $('#buttonOpen').css(opacity, 0.6)
+$('#buttonClosed').click(function(){
+	$('.openItem').attr('class','.closedItem')
+	$('.openItem').remove()
+	// $('#buttonOpen').css(opacity, 0.6)
 
-// })
+})
 
 itemImage.click(function(){
 	

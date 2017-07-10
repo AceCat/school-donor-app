@@ -48,7 +48,8 @@ router.post('/', function(request, response){
         image: request.body.image,
         description: request.body.description,
         owner: request.body.owner,
-        ownerName: request.body.ownerName
+        ownerName: request.body.ownerName,
+        ownerIsSchool: request.body.ownerIsSchool
     });
     item.save();
     var itemId = item.id;

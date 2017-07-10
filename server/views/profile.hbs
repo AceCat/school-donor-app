@@ -29,6 +29,7 @@
               <input name="image"placeholder="image" id="itemImageForm">
               <input name="description"placeholder="Please provide a description of the item" id='itemDescriptionForm'>
               <input name='ownerName' value='{{user.name}}' hidden>
+              <input name='ownerIsSchool' value='{{user.isSchool}}' hidden>
               <input name="owner" placeholder="owner" hidden id='itemDescriptionForm' value={{user.id}}>
               <button id='createItem'>Submit</button>
           </form>
@@ -40,9 +41,9 @@
           <button id="claimedButton">Claimed Items</button> --}}
 
         <div class="tab">
-  			<button class="tablinks" onclick="openList(event, 'openItems')">Open Items</button>
-  			<button class="tablinks" onclick="openList(event, 'closedItems')">Closed Items</button>
-  			<button class="tablinks" onclick="openList(event, 'claimedItems')">Claimed Items</button>
+  			<button class="tabName" onclick="openList(event, 'openItems')">Open Items</button>
+  			<button class="tabName" onclick="openList(event, 'closedItems')">Closed Items</button>
+  			<button class="tabName" onclick="openList(event, 'claimedItems')">Claimed Items</button>
 		</div>
 
       </div>
