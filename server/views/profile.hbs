@@ -95,7 +95,7 @@
         {{#each user.claimedItems}}
         	<div id="claimedItems" class='tabcontent'>
         	<h3>{{this.name}}</h3>
-        	<div><img src="{{this.image}}"/></div>
+        	<div><img id='itemImage' src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>
         	{{#if ../user.isSchool}}
         		<p>This item was donated by {{this.owner}}</p>
