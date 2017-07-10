@@ -9,7 +9,7 @@ var server = require('http').createServer(app);
 var UsersController = require('./controllers/UserController.js')
 var ItemController = require('./controllers/ItemController')
 
-var port = server.listen(process.env.PORT || 3000);
+var port = process.env.PORT || 3000;
 
 
 app.use(session({
