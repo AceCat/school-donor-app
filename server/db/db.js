@@ -3,7 +3,7 @@ var connectionString = 'mongodb://localhost/school';
 
 console.log("testing")
 
-mongoose.openUri(connectionString);
+mongoose.connect(connectionString);
 
 mongoose.connection.on('connected', function() {
 	console.log('connected to ' + connectionString);

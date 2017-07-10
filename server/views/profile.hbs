@@ -39,7 +39,7 @@
           <button id="openButton">Open Items</button>
           <button id="closedButton">Closed Items</button>
           <button id="claimedButton">Claimed Items</button>
-{{!-- 
+{{!--
         <ul class="tabs">
   			<button class="tablinks" id="openItemTab">Open Items</button>
   			<button class="tablinks">Closed Items</button>
@@ -96,7 +96,7 @@
         	<div><img id='itemImage' src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>
         	{{#if ../user.isSchool}}
-        		<p>This item was donated by {{this.owner}}</p>
+        		<p>This item was donated by {{this.ownerName}}</p>
         	{{/if}}
         	{{#unless ../user.isSchool}}
         		<p>{{../user.name}} fulfilled this request for {{this.ownerName}}</p>
