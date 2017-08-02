@@ -59,6 +59,24 @@ router.get('/logout', function(request, response) {
   response.redirect('/item/browser');
 });
 
+router.get('/inbox/:id', function(request, response){
+  var userId = request.params.id;
+  var onOwnPage = "";
+  if (userId === request.session.sessionId) {
+    onOwnPage = true;
+  } else {
+    onOwnPage = false;
+  }
+  User.findById(userId).populate('inbox').exec(function (err, user){
+    var pageLoad = {
+      user: user,
+      onOwnPage: onOwnPage,
+      session: request.session
+    }
+    response.render('inbox', pageLoad);
+  })
+})
+
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   var onOwnPage = "";
@@ -77,6 +95,8 @@ router.get('/:id', function(request, response){
     response.render('profile', pageLoad);
   })
 });
+
+
 
 
 

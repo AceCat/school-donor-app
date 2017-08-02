@@ -122,3 +122,9 @@ div.tab button.active {
     display: inline;
 }
 
+.message {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #e5e4e0;
+    border: 1px solid black;
+}

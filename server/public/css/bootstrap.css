@@ -4279,6 +4279,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
   display: inline;
   margin: 15px;
+  padding-right: 5px;
+  padding-left: 3px;
 
 
 }

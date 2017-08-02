@@ -60,9 +60,18 @@
             	</form>
             	{{/if}}
             	{{#unless ../ownPage}}
-            		<form action="./claim-item" method="POST">
-            			<input name="itemId" value="{{this.id}}" hidden>          <input name='ownerId' value='{{../user.id}}' hidden>
-            		<button id="claimButton">Claim item</button>
+{{!--             		<form action="./claim-item" method="POST">
+            			<input name="itemId" value="{{this.id}}" hidden>          
+                  <input name='ownerId' value='{{../user.id}}' hidden> --}}
+                <form class='messageForm' action='/messages' method='post'>
+                  <input name='text' placeholder='Type your message here'>
+                  <input name='request' value='{{this.id}}' hidden>
+                  <input name='requestName' value='{{this.name}}' hidden>
+                  <input name='sender' value='{{../session.sessionId}}' hidden>
+                  <input name='recipient' value='{{../user.id}}' hidden>
+                  <input name="senderName" value='{{../session.userName}}' hidden>
+                  <input name='pending' value='true' hidden>
+            		  <button id="claimButton">Send a message</button>
             		</form>
 
             	{{/unless}}

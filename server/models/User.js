@@ -15,7 +15,8 @@ var UserSchema = new mongoose.Schema({
   description: String,
 	openItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
 	closedItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
-  claimedItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}]
+  claimedItems: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
+  inbox: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}]
 });
 
 UserSchema.index({name: 'text', openItems: 'text'})
