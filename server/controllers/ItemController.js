@@ -34,6 +34,8 @@ router.post('/search', function(request, response) {
     Item.find({$text: {$search: searchTerm}, open: true})
     .exec(function(err, items) {
         console.log(items)
+
+        
         var itemsObj = {items: items};
         response.render('search', itemsObj)
     });

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var connectionString = 'mongodb://localhost/school';
+var connectionString = 'mongodb://localhost/school-1';
 
 console.log("testing")
 

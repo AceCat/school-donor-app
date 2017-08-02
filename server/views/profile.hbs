@@ -36,18 +36,19 @@
 
           <br>
           {{/if}}
-          <div class="tab">
-          <button id="openButton" class="tab">Open Items</button>
-          <button id="closedButton">Closed Items</button>
-          <button id="claimedButton">Claimed Items</button>
-          </div>
+
+    <div class="tab">
+      <button id="openButton">Open Items: {{user.openItems.length}}</button>
+      <button id="closedButton">Closed Items: {{user.closedItems.length}}</button>
+      <button id="claimedButton">Claimed Items: {{user.claimedItems.length}}</button>
+    </div>
 
 
       </div>
       <div class="row">
       </div>
         {{#each user.openItems}}
-        	<div class="openItem">
+        	<div class="openItem displayItem">
             	<h3>{{this.name}}</h3>
               <div><img id="itemImage" alt="Item Image" src="{{this.image}}"/></div>
             	<p>{{this.description}}</p>
@@ -69,7 +70,7 @@
         {{/each}}
 
         {{#each user.closedItems}}
-        	<div class="closedItem">
+        	<div class="closedItem displayItem">
             <h3>{{this.name}}</h3>
             <div><img class="unclicked" id="itemImage" src="{{this.image}}" /></div>
             <p>{{this.description}}</p>
@@ -89,7 +90,7 @@
         {{/each}}
 
         {{#each user.claimedItems}}
-        	<div class="claimedItem">
+        	<div class="claimedItem displayItem">
         	<h3>{{this.name}}</h3>
         	<div><img id='itemImage' src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>

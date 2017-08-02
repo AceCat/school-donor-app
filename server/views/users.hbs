@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		{{#each users}}
+		<div class='userListing col-lg-6 clearfix'>
+			<div>
+				<img class='imageContainer pull-left' src="{{this.image}}"/>
+			</div>
+			<div class='text'>
+				<a href='/users/{{this.id}}'>{{this.name}}</a>
+				<p class='userInfo'>Number of open items: {{this.openItems.length}}</p>
+				<p>Number of fufilled requests: {{this.claimedItems.length}}</p>
+			</div>
+		</div>
+	{{/each}}
