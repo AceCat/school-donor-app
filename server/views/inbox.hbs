@@ -1,0 +1,52 @@
+<h1>Inbox</h1>
+
+<select id='messageFilter'>
+    {{#each user.inbox}}
+        <option value='{{this.requestName}}'>{{this.requestName}}</option>
+    {{/each}}
+</select>
+<button id='filterMessages'>Filter messages</button>
+
+
+{{#reverse user.inbox}}
+{{/reverse}}
+
+{{#each user.inbox}}
+    {{#if this.pending}}
+	<div class='message'>
+		<p>From: {{this.senderName}}</p>
+		<p>Regarding: {{this.requestName}}</p>
+		<p>Message: {{this.text}}</p>
+        {{#if this.pending}}
+		<form action="/users/move-open" method="POST">
+            <input name="itemId" value="{{this.request}}" hidden>
+            <input name='claimantId' value='{{this.sender}}' hidden>
+            <input name='messageId' value='{{this.id}}' hidden>
+            <input name='requestName' value='{{this.requestName}}'>
+        	<button id="buttonClosed" name="openIt">Mark item closed</button>
+        </form>
+        {{/if}}
+        <form class='messageForm' action='/messages' method='post'>
+            <input name='text' placeholder='Send a reply!'>
+            <input name='request' value='{{this.request}}' hidden>
+            <input name='requestName' value='{{this.requestName}}' hidden>
+            <input name='sender' value='{{../session.sessionId}}' hidden>
+            <input name='recipient' value='{{this.sender}}' hidden>
+            <input name="senderName" value='{{this.senderName}}' hidden>
+            <input name='pending' value='true' hidden>
+            <button id="claimButton">Send Message</button>
+        </form>
+	</div>
+    {{/if}}
+{{/each}}
+
+<h2>Archived Messages </h2>
+{{#each user.inbox}}
+    {{#unless this.pending}}
+        <div class='message'>
+            <p>From: {{this.senderName}}</p>
+            <p>Regarding: {{this.requestName}}</p>
+            <p>Message: {{this.text}}</p>
+        </div>
+    {{/unless}}
+{{/each}}

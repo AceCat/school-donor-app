@@ -36,18 +36,19 @@
 
           <br>
           {{/if}}
-          <div class="tab">
-          <button id="openButton" class="tab">Open Items</button>
-          <button id="closedButton">Closed Items</button>
-          <button id="claimedButton">Claimed Items</button>
-          </div>
+
+    <div class="tab">
+      <button id="openButton">Open Items: {{user.openItems.length}}</button>
+      <button id="closedButton">Closed Items: {{user.closedItems.length}}</button>
+      <button id="claimedButton">Claimed Items: {{user.claimedItems.length}}</button>
+    </div>
 
 
       </div>
       <div class="row">
       </div>
         {{#each user.openItems}}
-        	<div class="openItem">
+        	<div class="openItem displayItem">
             	<h3>{{this.name}}</h3>
               <div><img id="itemImage" alt="Item Image" src="{{this.image}}"/></div>
             	<p>{{this.description}}</p>
@@ -59,9 +60,18 @@
             	</form>
             	{{/if}}
             	{{#unless ../ownPage}}
-            		<form action="./claim-item" method="POST">
-            			<input name="itemId" value="{{this.id}}" hidden>          <input name='ownerId' value='{{../user.id}}' hidden>
-            		<button id="claimButton">Claim item</button>
+{{!--             		<form action="./claim-item" method="POST">
+            			<input name="itemId" value="{{this.id}}" hidden>          
+                  <input name='ownerId' value='{{../user.id}}' hidden> --}}
+                <form class='messageForm' action='/messages' method='post'>
+                  <input name='text' placeholder='Type your message here'>
+                  <input name='request' value='{{this.id}}' hidden>
+                  <input name='requestName' value='{{this.name}}' hidden>
+                  <input name='sender' value='{{../session.sessionId}}' hidden>
+                  <input name='recipient' value='{{../user.id}}' hidden>
+                  <input name="senderName" value='{{../session.userName}}' hidden>
+                  <input name='pending' value='true' hidden>
+            		  <button id="claimButton">Send a message</button>
             		</form>
 
             	{{/unless}}
@@ -69,7 +79,7 @@
         {{/each}}
 
         {{#each user.closedItems}}
-        	<div class="closedItem">
+        	<div class="closedItem displayItem">
             <h3>{{this.name}}</h3>
             <div><img class="unclicked" id="itemImage" src="{{this.image}}" /></div>
             <p>{{this.description}}</p>
@@ -89,7 +99,7 @@
         {{/each}}
 
         {{#each user.claimedItems}}
-        	<div class="claimedItem">
+        	<div class="claimedItem displayItem">
         	<h3>{{this.name}}</h3>
         	<div><img id='itemImage' src="{{this.image}}"/></div>
         	<p>{{this.description}}</p>
@@ -99,5 +109,6 @@
         	{{#unless ../user.isSchool}}
         		<p>{{../user.name}} fulfilled this request for {{this.ownerName}}</p>
         	{{/unless}}
+          </div>
         {{/each}}
 </div>
