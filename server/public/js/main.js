@@ -4,8 +4,22 @@ var changeItems = $("#changeItems")
 var submitSearch = $('#submitSearch');
 var submitButton = $('#submitEdit');
 var deleteButton = $('#deleteButton');
-var itemImage = $('#itemImage')
+var itemImage = $('#itemImage');
+var filterMessages = $('#filterMessages');
 
+//Create button listener for the school type form
+$('#userTypeForm').change(function(){
+	var schoolTypeForm = $('#schoolTypeForm')
+	if ($('#userTypeForm').val() === "true") {
+		console.log('firing')
+		schoolTypeForm.removeAttr('disabled');
+		schoolTypeForm.removeClass('disabled');
+	} else {
+		console.log('trying')
+		schoolTypeForm.attr('disabled', 'disabled')
+		schoolTypeForm.addClass('disabled')
+	}
+})
 
 createButton.click(function (){
 	var schoolTypeFormDisabled = $('#schoolTypeForm').hasClass('disabled');
@@ -80,6 +94,7 @@ submitButton.click(function(){
 deleteButton.click(function(){
 	var itemId = $('#deleteId').val();
 	var userId = $('#userId').val();
+
 	$.ajax({
 		method: "DELETE",
 		url: "../item/" + itemId,
@@ -87,6 +102,10 @@ deleteButton.click(function(){
 			window.location.href = ("../users/" + userId);
 		}
 	})
+})
+
+filterMessages.click(function(){
+	console.log('firing')
 })
 
 //Google maps stuff

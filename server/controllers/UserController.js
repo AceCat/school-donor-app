@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
 var Item = require('../models/Item');
+var Message = require('../models/Message');
+var User = require('../models/User');
 var bodyParser = require('body-parser');
 var path = require('path');
 var bcrypt = require('bcryptjs');
@@ -145,15 +146,28 @@ router.post('/', function (request, response) {
 
 
 router.post('/move-open', function (request, response){
+  var claimantId = request.body.claimantId
+  var itemId = request.body.itemId
+  var requestName = request.body.requestName
+  //Need to add logic that checks the request name and the user Id
+  Message.find( {requestName: requestName}, function(err, thread){
+    for (i = 0; i<thread.length; i++){
+        thread[i].pending = false;
+        thread[i].save();
+    }
+  })
   Item.findById(request.body.itemId, function(request, item) {
     item.open = false;
     item.save();
-    console.log(item);
-  })
+    })
+  User.findById(claimantId, function(request, claimant){
+      claimant.claimedItems.push(itemId)
+      claimant.save()
+    })
   User.findById(request.session.sessionId, function(err, user){
-    var indexToChange = user.openItems.indexOf(request.body.itemId);
+    var indexToChange = user.openItems.indexOf(itemId);
     user.openItems.splice(indexToChange, 1)
-    user.closedItems.addToSet(request.body.itemId);
+    user.closedItems.addToSet(itemId);
     user.save();
     response.redirect('/users/' + request.session.sessionId)
   })
