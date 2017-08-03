@@ -128,3 +128,6 @@ div.tab button.active {
     background-color: #e5e4e0;
     border: 1px solid black;
 }
+.counter {
+	margin: 4px;
+}

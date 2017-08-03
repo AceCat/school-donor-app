@@ -75,7 +75,7 @@ submitButton.click(function(){
 		isSchool: isSchool,
 		address: address,
 		description: description,
-		image: image,
+		image: image
 	};
 	var pageUrl = document.URL; // Get current url
 	var urlArray = pageUrl.split('/') // Split the string into an array with / as separator
@@ -86,6 +86,7 @@ submitButton.click(function(){
 		data: newUserData,
 		success: function(response){
 			window.location.href = ("../users/" + urlId);
+			console.log('success')
 
 		}
 	})
@@ -264,7 +265,3 @@ $('#donorOwned').click(function(){
 	$('#schoolOwned').removeClass('active')
 	$('.ownerIsSchool').hide();
 });
-
-
-
-

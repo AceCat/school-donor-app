@@ -30,6 +30,10 @@ User.find(function(error, users) {
   })
 });
 
+router.get('/home', function(request, response){
+  response.render('home')
+})
+
 router.get('/register', function(request, response){
   response.render('register')
 })
@@ -230,9 +234,9 @@ router.post('/login', function(request, response){
   })
 });
 
-
-
-
+//////////////////
+//PATCH REQUESTS//
+//////////////////
 
 router.patch('/:id', function(request, response){
   var id = request.params.id;

@@ -33,7 +33,11 @@ router.post('/', function(request, response){
 	User.findById(message.recipient, function(err, user){
 		user.inbox.push(messageId);
 		user.save();
+<<<<<<< HEAD
 		response.redirect('back');
+=======
+		response.send(message)
+>>>>>>> styling2
 	})
 })
 
