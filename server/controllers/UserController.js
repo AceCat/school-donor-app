@@ -25,9 +25,13 @@ router.get('/', function (request, response) {
 User.find(function(error, users) {
       var session = request.session;
       var allUsers = {allUsers: users, session: session};
-    response.send(users);
+      response.send(allUsers);
   })
 });
+
+router.get('/home', function(request, response){
+  response.render('home')
+})
 
 router.get('/register', function(request, response){
   response.render('register')
@@ -36,6 +40,13 @@ router.get('/register', function(request, response){
 router.get('/login', function(request, response){
   response.render('login')
 })
+
+router.get('/browse', function(request, response){
+  User.find(function(err,users){
+      var sendOver = {users: users, session: request.session}
+      response.render('users', sendOver)
+  })
+});
 
 router.get('/edit/:id', function(request, response) {
   var id = request.params.id;
@@ -52,6 +63,24 @@ router.get('/logout', function(request, response) {
   response.redirect('/item/browser');
 });
 
+router.get('/inbox/:id', function(request, response){
+  var userId = request.params.id;
+  var onOwnPage = "";
+  if (userId === request.session.sessionId) {
+    onOwnPage = true;
+  } else {
+    onOwnPage = false;
+  }
+  User.findById(userId).populate('inbox').exec(function (err, user){
+    var pageLoad = {
+      user: user,
+      onOwnPage: onOwnPage,
+      session: request.session
+    }
+    response.render('inbox', pageLoad);
+  })
+})
+
 router.get('/:id', function(request, response){
   var userId = request.params.id;
   var onOwnPage = "";
@@ -61,6 +90,7 @@ router.get('/:id', function(request, response){
     onOwnPage = false;
   }
   User.findById(userId).populate('openItems').populate('closedItems').populate('claimedItems').exec(function (err, user){
+    //.populate('pendingrequests')
     var pageLoad = {
       user: user,
       onOwnPage: onOwnPage,
@@ -69,6 +99,8 @@ router.get('/:id', function(request, response){
     response.render('profile', pageLoad);
   })
 });
+
+
 
 
 
@@ -156,10 +188,10 @@ router.post('/claim-item', function (request, response){
     user.save();
   })
   User.findById(request.body.ownerId, function(err, user){
-    console.log(user)
     var indexToChange = user.openItems.indexOf(request.body.itemId);
     user.openItems.splice(indexToChange, 1);
     user.closedItems.addToSet(request.body.itemId);
+    //user.pendingItems.addToSet(request.body.itemId)
     user.save();
     response.redirect('/users/' + request.session.sessionId)
   })
@@ -188,9 +220,9 @@ router.post('/login', function(request, response){
   })
 });
 
-
-
-
+//////////////////
+//PATCH REQUESTS//
+//////////////////
 
 router.patch('/:id', function(request, response){
   var id = request.params.id;

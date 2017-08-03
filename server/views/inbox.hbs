@@ -1,0 +1,26 @@
+<h1>Inbox</h1>
+
+
+{{#reverse user.inbox}}
+{{/reverse}}
+{{#each user.inbox}}
+	<div class='message'>
+		<p>From: {{this.senderName}}</p>
+		<p>Regarding: {{this.requestName}}</p>
+		<p>Message: {{this.text}}</p>
+		<form action="/users/move-open" method="POST">
+            <input name="itemId" value="{{this.request}}" hidden>
+        	<button id="buttonClosed" name="openIt">Mark item closed</button>
+        </form>
+        <form class='messageForm' action='/messages' method='post'>
+            <input name='text' placeholder='Send a reply!'>
+            <input name='request' value='{{this.request}}' hidden>
+            <input name='requestName' value='{{this.requestName}}' hidden>
+            <input name='sender' value='{{../session.sessionId}}' hidden>
+            <input name='recipient' value='{{this.sender}}' hidden>
+            <input name="senderName" value='{{this.senderName}}' hidden>
+            <input name='pending' value='true' hidden>
+            <button id="claimButton">Send Message</button>
+        </form>
+	</div>
+{{/each}}
