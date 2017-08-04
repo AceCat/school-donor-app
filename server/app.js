@@ -21,7 +21,7 @@ var port = process.env.PORT || 3000;
 app.use(session({
 	secret: "I'm very secretive",
 	resave: false,
-	saveUnitialized: true,
+	saveUninitialized: true,
 	cookie: {secure: false}
 }));
 
