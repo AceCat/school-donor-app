@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-server.listen(3000, function () {
+server.listen(port, function () {
 
 	console.log("listening on port " + port);
 })
